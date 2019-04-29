@@ -1,0 +1,186 @@
+@charset "UTF-8"
+@mixin flexCenter($display:flex)
+    @if $display == flex
+        display: flex
+        justify-content: center
+        align-items: center
+// center
+@mixin center($type:flex,$n:0)
+    @if $type == flex
+        display: flex
+        justify-content: center
+        align-items: center
+    @else if $type == transform
+        top: 50%
+        left: 50%
+        transform: translate(-50%,-50%)
+    @else if $type == line-height
+        text-align: center
+        height: #{$n}px
+        line-height: #{$n}px
+
+// align translate
+@mixin align-trans($XYZ:C)
+    @if $XYZ != C
+        transform: translate+'#{$XYZ}'+'(-50%)'
+        @if $XYZ == X
+            left: 50%
+        @if $XYZ == Y
+            top: 50%
+    
+    @if $XYZ == C
+        top: 50%
+        left: 50%
+        transform: translate(-50%,-50%)
+
+
+// background
+@mixin bg($url,$position,$size:Initial,$repeat:no-repeat)
+    @if str-slice($url,1,1) == '#'
+        background-color: unquote($url)
+    @else if $url !=''
+        background-image: url($url)
+    background:
+        position: $position
+        size: $size
+        repeat: $repeat 
+
+
+@mixin border($color:#000,$dir:all,$w:1px,$type:solid)
+    @if $dir == all
+        border:  $w $type $color
+    @else
+        border-#{$dir}: $w $type $color
+
+
+// 圓角 radius        
+@mixin borderR($dir,$a:0)
+    @if $dir ==top
+        border-radius: $a $a 0 0
+    @if $dir ==bottom
+        border-radius: 0 0 $a $a
+    @if $dir ==left
+        border-radius: $a 0 0 $a
+    @if $dir ==right
+        border-radius: 0 $a $a 0
+    
+        
+
+// 溢出省略顯示為...
+@mixin text-ellipsis() 
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+
+// 清float
+@mixin clearfix
+    &::after
+        content: ""
+        display: block
+        clear: both
+
+
+// 測試底線
+@mixin testBorder
+    border: 1px solid #ccc
+
+
+// 動畫底線
+@mixin link_underLine($color:$colorB,$cursor:pointer)
+    &.link_underLine
+        color: $color
+        cursor: $cursor
+        position: relative
+        &::after
+            content: ''
+            position: absolute
+            bottom: 0
+            left: 0
+            width: 0%
+            height: 1px
+            background-color: $colorB
+            transition: width 200ms ease
+        &:hover::after
+            width: 100%
+
+// 透明度
+// 这个mixin可以制作出兼容 Internet Explorer 5 的跨浏览器透明度效果。
+// @mixin opacity($opacity)
+//     opacity: $opacity
+//     $opacity-ie: $opacity * 100
+//     filter: alpha(opacity=$opacity-ie) //IE8
+
+
+
+    
+
+// rectangle or square
+@mixin size($w,$h:$w)
+    width: $w
+    height: $h
+
+@mixin ratio($ratio:100%,$item:before)
+    &::#{$item}
+        content: ""
+        display: block
+        padding-bottom: $ratio
+@mixin imgRatio($w:100%,$h:100%,$item:before)
+    &::#{$item}
+        content: ''
+        display: block
+        padding-bottom: $h/$w*100%
+//triangle
+@mixin triangle($w,$h,$color,$direction)
+    width: 0
+    height: 0
+    border-style: solid
+    @if $direction == top
+        border-color: transparent transparent $color transparent
+        border-width: 0 $w/2 $h
+    @if $direction == left
+        border-color: transparent $color transparent transparent
+        border-width: $h/2 $w $h/2 0
+    @if $direction == bottom
+        border-color: $color transparent transparent transparent
+        border-width: $h $w/2 0
+    @if $direction == right
+        border-color: transparent transparent transparent $color
+        border-width: $h/2 0 $h/2 $w
+    @if $direction == top-right or $direction == right-top
+        border-color: transparent $color transparent transparent
+        border-width: 0 $w $h 0
+    @if $direction == top-left or $direction == left-top
+        border-color: $color transparent transparent transparent
+        border-width: $h $w 0 0   
+    @if $direction == bottom-right or $direction == right-bottom
+        border-color: transparent $color transparent transparent
+        border-width: $h $w 0 0
+    @if $direction == bottom-left or $direction == left-bottom
+        border-color: transparent transparent $color transparent
+        border-width: 0 $w $h 0
+// circle    
+@mixin circle($r,$angle:99em)
+    width: $r
+    height: $r
+    border-radius: $angle
+   
+
+@mixin position($position,$t:'',$r:'',$b:'',$l:'')
+
+    @if $position !=''
+        position: $position
+    @if $t !=''
+        top: $t
+    @if $r !=''
+        right: $r 
+    @if $b !=''
+        bottom: $b 
+    @if $l !=''
+        left: $l
+    
+
+// example ////////////////////////////
+// $array: (a,b,c,d,e)
+// @each $i in $array
+// @for $i from 1 through 4

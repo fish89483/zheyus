@@ -1,0 +1,58 @@
+@charset "UTF-8"
+$media_xl: 1440px
+$media_l: 1199px
+$media_m: 992px
+$media_s: 768px
+$media_xs: 414px
+
+
+@mixin width_xl()
+    @media screen and (max-width: $media_xl)
+        @content
+@mixin width_l()
+    @media screen and (max-width: $media_l)
+        @content
+@mixin width_m()
+    @media screen and (max-width: $media_m)
+        @content
+@mixin width_s()
+    @media screen and (max-width: $media_s)
+        @content
+@mixin width_xs()
+    @media screen and (max-width: $media_xs)
+        @content
+
+@mixin width_xl2t
+    @media screen and (min-width: $media_xl+1) 
+        @content
+@mixin width_l2t
+    @media screen and (min-width: $media_l+1) 
+        @content
+@mixin width_m2t
+    @media screen and (min-width: $media_m+1) 
+        @content
+@mixin width_s2t
+    @media screen and (min-width: $media_s+1) 
+        @content
+@mixin width_xs2t
+    @media screen and (min-width: $media_xs+1) 
+        @content
+
+@mixin width_xl2l
+    @media screen and (min-width: $media_l+1) and (max-width: $media_xl)
+        @content
+@mixin width_xl2m
+    @media screen and (min-width: $media_m+1) and (max-width: $media_xl)
+        @content 
+@mixin width_l2m
+    @media screen and (min-width: $media_m+1) and (max-width: $media_l)
+        @content
+@mixin width_m2s
+    @media screen and (min-width: $media_s+1) and (max-width: $media_m)
+        @content
+@mixin width_l2s
+    @media screen and (min-width: $media_s+1) and (max-width: $media_l)
+        @content
+@mixin width_s2xs
+    @media screen and (min-width: $media_xs+1) and (max-width: $media_s)
+        @content
