@@ -51,7 +51,7 @@ gulp.task('sass', function () {
     }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     // .pipe(gulp.dest(path.tmpCss));
-    .pipe(concat('main.css'))
+    // .pipe(concat('main.css'))
     // .pipe(hash()) // Add hashes to the files' names
     // .pipe(gulp.dest('dist/css')) // Write the renamed files
     // .pipe(hash.manifest('assets.json'))
