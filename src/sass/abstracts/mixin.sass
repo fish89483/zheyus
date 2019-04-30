@@ -1,49 +1,35 @@
 @charset "UTF-8"
-@mixin flexCenter($display:flex)
-    @if $display == flex
-        display: flex
-        justify-content: center
-        align-items: center
+
 // center
-@mixin center($type:flex,$n:0)
+@mixin center($type:flex,$var:0)
     @if $type == flex
         display: flex
         justify-content: center
         align-items: center
     @else if $type == transform
-        top: 50%
-        left: 50%
-        transform: translate(-50%,-50%)
+        @if $var == 'X'
+            transform: unquote('translate#{$var}(-50%)')
+            left: 50%
+        @else if $var == 'Y'
+            transform: unquote('translate#{$var}(-50%)')
+            top: 50%
+        @else 
+            top: 50%
+            left: 50%
+            transform: translate(-50%,-50%)
     @else if $type == line-height
         text-align: center
-        height: #{$n}px
-        line-height: #{$n}px
-
-// align translate
-@mixin align-trans($XYZ:C)
-    @if $XYZ != C
-        transform: translate+'#{$XYZ}'+'(-50%)'
-        @if $XYZ == X
-            left: 50%
-        @if $XYZ == Y
-            top: 50%
-    
-    @if $XYZ == C
-        top: 50%
-        left: 50%
-        transform: translate(-50%,-50%)
-
+        height: $var
+        line-height: $var
 
 // background
 @mixin bg($url,$position,$size:Initial,$repeat:no-repeat)
-    @if str-slice($url,1,1) == '#'
-        background-color: unquote($url)
-    @else if $url !=''
-        background-image: url($url)
-    background:
-        position: $position
-        size: $size
-        repeat: $repeat 
+    @for $i from 1 through length($url)
+        @if nth($url,$i) !=''
+            @if str-slice(inspect(nth($url,$i)),1,1) == '#'
+                background-color: unquote(nth($url,$i))
+            @else if inspect(nth($url,$i)) !=''
+                background-image: url(nth($url,$i))
 
 
 @mixin border($color:#000,$dir:all,$w:1px,$type:solid)
@@ -120,16 +106,12 @@
     width: $w
     height: $h
 
-@mixin ratio($ratio:100%,$item:before)
-    &::#{$item}
-        content: ""
-        display: block
-        padding-bottom: $ratio
-@mixin imgRatio($w:100%,$h:100%,$item:before)
+@mixin ratio($w:100%,$h:100%,$item:before)
     &::#{$item}
         content: ''
         display: block
         padding-bottom: $h/$w*100%
+
 //triangle
 @mixin triangle($w,$h,$color,$direction)
     width: 0
