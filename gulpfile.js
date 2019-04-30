@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
-    gulpLivereload = require('gulp-livereload')
+    connect = require('gulp-connect');
+// gulpLivereload = require('gulp-livereload')
 var path = {
     src: 'src/**/*',
     srcHTML: 'src/**/*.html',
@@ -43,7 +44,8 @@ gulp.task('html', function () {
             // pretty: true 
         }))
         .pipe(gulp.dest(path.dist))
-        .pipe(gulpLivereload())
+        .pipe(connect.reload());
+    // .pipe(gulpLivereload())
 })
 
 gulp.task('sass', function () {
@@ -58,7 +60,8 @@ gulp.task('sass', function () {
         // .pipe(gulp.dest('dist/css')) // Write the renamed files
         // .pipe(hash.manifest('assets.json'))
         .pipe(gulp.dest(path.distCSS))
-        .pipe(gulpLivereload())
+        .pipe(connect.reload());
+    // .pipe(gulpLivereload())
 
 
 });
@@ -70,7 +73,8 @@ gulp.task('concat-js', function () {
         // .pipe(gulp.dest('dist/js')) // Write the renamed files
         // .pipe(hash.manifest('assets.json'))
         .pipe(gulp.dest(path.distJS))
-        .pipe(gulpLivereload())
+        .pipe(connect.reload());
+    // .pipe(gulpLivereload())
 })
 
 // gulp.task('concat-css', function () {
@@ -121,20 +125,27 @@ gulp.task('img', function () {
 //     return target.pipe(inject(sources))
 //         .pipe(gulp.dest('./src/pug'));
 // })
-
+gulp.task('server', function () {
+    connect.server({
+        root: '',
+        livereload: true
+    });
+});
 // watch
 gulp.task('watch', function () {
-    gulpLivereload.listen();
+    // gulpLivereload.listen();
+    gulp.parallel('connect')
     gulp.watch(path.srcSass, gulp.series('styles'));
     gulp.watch(path.srcJS, gulp.series('scripts'));
     gulp.watch(path.srcPug, gulp.series('html'));
 });
+
+gulp.task('connect',gulp.parallel('server', 'watch'))
 //start
-gulp.task('start', gulp.series('styles', 'scripts', 'html', 'watch'));
+gulp.task('start', gulp.series('styles', 'scripts', 'html', 'img', 'connect'));
 // gulp.task('start', gulp.series('styles', 'scripts', 'inject', 'html'))
 
-gulp.task('build', gulp.series('styles','scripts','html','img'));
-
+gulp.task('build', gulp.series('styles', 'scripts', 'html', 'img'));
 // gulp.task('hash', function () {
 //     return gulp.src('./dist/js/**/*.js')
 //         .pipe(hash()) // Add hashes to the files' names

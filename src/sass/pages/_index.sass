@@ -40,17 +40,39 @@ body
             +position(absolute)
             +center(transform)
             +ratio
-            border-radius: 99em
-            overflow: hidden
+            // border-radius: 99em
+            // overflow: hidden
             z-index: 1
             transform-style: preserve-3d
         &__layer
             +size(100%)
             +position(absolute,0,'','',0)
             &.-back
+                
+                mix-blend-mode: darken
+                clip-path: circle(50%)
                 .layer-img
                     background-image: url(map-get($img,back))
+                    &::before
+                        content: ''
+                        +size(100%)
+                        +position(absolute,0,0)
+                        mix-blend-mode: lighten
+                &.-c
+                    .layer-img
+                        &::before
+                            background-color: #0ff
+                &.-m
+                    .layer-img
+                        &::before
+                            background-color: #f0f
+                &.-y
+                    .layer-img
+                        &::before
+                            background-color: #ff0
             &.-front
+                
+                clip-path: circle(50%)
                 .layer-img
                     background-image: url(map-get($img,front))
         .layer-img
