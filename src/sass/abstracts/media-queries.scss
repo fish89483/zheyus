@@ -1,0 +1,55 @@
+@charset "UTF-8";
+$queries: (
+    xl: 1440px,
+    l: 1199px,
+    m: 992px,
+    s: 768px,
+    xs: 414px
+);
+
+@mixin rwd($query,$rage:under) {
+    $main-query: map-get($queries, $query);
+    $sec-query: '';
+    @if map-has-key($queries, $rage){
+        $sec-query: map-get($queries, $rage);
+    };
+    @if ($sec-query != ''){
+        @if($main-query > $sec-query){
+            @media screen and (min-width: $sec-query + 1) and (max-width: $main-query) {
+                @content;
+            }
+        }
+        @else{
+            @media screen and (min-width: $main-query + 1) and (max-width: $sec-query) {
+                @content;
+            }
+        }
+    };
+    @if($rage == under){
+        @media screen and (max-width: $main-query){
+            @content;
+        }
+    }
+    @else if($rage == t or $rage == top){
+        @media screen and (min-width: $main-query + 1) {
+            @content;
+
+        }
+    };
+}
+
+// .test{
+//     @include rwd(xl){
+//         max-width: 1440px
+//     }
+//     @include rwd(xl,s){
+//         max-width: 123px
+//     }
+//     @include rwd(s,m){
+//         max-width: 12344px
+//     }
+//     @include rwd(l,t){
+//         max-width: 1200px
+//     }
+// }
+    
