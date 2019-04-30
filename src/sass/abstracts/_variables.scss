@@ -1,0 +1,20 @@
+$color: (
+    main: #11acf0,
+    test: red
+);
+
+$cursor: (
+    color: map-get($color, main),
+    time: (
+        in: 400ms,
+        out: 300ms),
+    fn: (
+        trans: cubic-bezier(0.75, -1.27, 0.3, 2.33),
+        opacity: ease-in)
+);
+
+$img: (
+    noise: '../images/noise.gif',
+    back: '../images/kv-back.jpg',
+    front: '../images/kv-front.png'
+)

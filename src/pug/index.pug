@@ -12,25 +12,16 @@ html(lang="zh-TW")
         //- inject:js
         //- endinject
     body
-        - var titleList = ['TITLE 1','TITLE 2','TITLE 3','TITLE 4','TITLE 5','TITLE 6']
-        .container
-            header.kv
-                h1 Scrollspy
-            .article-wrap
-                .article-nav#js-nav
-                    ul
-                        each val,index in titleList
-                            if index == 0
-                                li(class=`nav-item section-${index + 1} -active`)=val
-                            else
-                                li(class=`nav-item section-${index + 1}`)=val
-                        .slider
-
-                .article-content
-                    each val,index in titleList
-                        section(class=`article-item section-${index + 1}`)
-                            h3.title=titleList[index]
-                            p.text Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet sequi, iste assumenda tenetur non odio suscipit ullam porro tempore ipsum explicabo aliquam? Non accusantium, voluptatum inventore sapiente dicta fuga ducimus?Omnis autem esse totam maxime. Provident ut ullam vitae itaque quas iste reiciendis placeat, reprehenderit tenetur, commodi vel veritatis. Numquam voluptate est saepe explicabo facere laudantium sed illum fugit recusandae!Excepturi saepe mollitia non magnam nobis veritatis possimus esse dignissimos corporis enim odio, ducimus atque nemo reprehenderit, sint cum aut sed molestiae minima! Itaque maxime voluptatibus sapiente, minus ex vero.Exercitationem odit nesciunt laborum nihil dolore doloremque provident omnis, ut dolorem? Dolore ipsam vero, sit harum sequi explicabo dignissimos similique veritatis! Molestias nesciunt nisi sit porro atque explicabo voluptates iste?
-            section.section2
-                h1 section
-                p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda accusamus ipsum vitae rem architecto harum perspiciatis suscipit numquam repellendus dolores facilis possimus, repellat reiciendis voluptatibus necessitatibus est inventore natus quae.Minus corporis praesentium veritatis fugit iste. Est eum culpa repudiandae! Eius odit culpa eveniet ea nobis natus soluta, libero vel eos dolor quis magnam architecto, ducimus itaque, tempore porro eum!
+        .kv
+            .kv-title
+                .kv-title__stroke
+                    h1 TEXTTEXTT222
+                .kv-title__img
+                    each layer in ['back','front']
+                        .kv-title__layer(class='-'+layer)
+                            .layer-img
+                .kv-title__noise
+                    h1 TEXTTEXTT222
+        .cursor
+            
+        .content

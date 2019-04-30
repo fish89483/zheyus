@@ -30,6 +30,10 @@
                 background-color: unquote(nth($url,$i))
             @else if inspect(nth($url,$i)) !=''
                 background-image: url(nth($url,$i))
+    background: 
+        size: $size
+        position: $position
+        repeat: $repeat
 
 
 @mixin border($color:#000,$dir:all,$w:1px,$type:solid)

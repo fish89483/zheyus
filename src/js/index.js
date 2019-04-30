@@ -1,50 +1,35 @@
 $(function () {
-    $(window).on('scroll', function () {
-        scrollFixed(); 
+    var $area = $('.kv')
+    $area.on('mousemove mousein', function (e) {
+        var str = 10;
+        var alignX = e.pageX - $(this).width() / 2
+        var alignY = e.pageY - $(this).height() / 2
 
+        var StrX = str / $(this).width();
+        var StrY = str / $(this).height();
 
-        var advance = 50; // 提前
-        var currentTop = $(window).scrollTop() + advance;
+        var moveX = StrX * alignY;
+        var moveY = StrY * alignX;
 
-        $('section.article-item').each(function (index) {
-            var itemTop = $(this).offset().top;
-            var itemBottom = itemTop + $(this).height();
+        $(this).find('.kv-title__layer.-front').css('transform', 'translateY(' + moveX * str / 6 + 'px) translateX(' + moveY * str / -6 + 'px) rotateX(' + moveX * str / 6 * -1 + 'deg) rotateY(' + moveY * str / 6 + 'deg) translateZ(' + str / 1 + 'vw)')
 
-            if (currentTop >= itemTop && currentTop <= itemBottom) {
+        $(this).find('.kv-title__layer.-back').css('transform', 'translateY(' + moveX * str / 6 + 'px) translateX(' + moveY * str / -6 + 'px) rotateX(' + moveX * str / 6 * -1 + 'deg) rotateY(' + moveY * str / 6 + 'deg) translateZ(' + str / 10 + 'vw)')
 
-                var currentClass = $(this).attr('class').split(' ')[1];
-                var navItem = $('.nav-item.' + currentClass);
-
-                navItem.addClass('-active').siblings().removeClass('-active');
-            };
+        
+    });
+    $(window).on('mousemove mousein', function (e) {
+        $('.cursor').css({
+            'top': e.pageY + 'px',
+            'left': e.pageX + 'px'
         });
+    })
+    $('.kv-title__img,.kv-title__stroke,a').on('mouseenter', function () {
+        $('.cursor').addClass('-active')
+    })
+    $('.kv-title__img,.kv-title__stroke,a').on("mouseleave", function () {
+        $('.cursor').removeClass('-active')
+    })
 
 
-    });
-    $('.nav-item').on('click', function () {
-        var currentClass = $(this).attr('class').split(' ')[1];
-
-        scrollTo(currentClass);
-
-    });
-
-
-
-    function scrollFixed() {
-        var $item = $('#js-nav');
-
-        ($item.offset().top - $(window).scrollTop() <= 0) ? $item.addClass('-fixed'): $item.removeClass('-fixed');
-
-        var wrapBottom = $('.article-wrap').outerHeight() + $('.article-wrap').offset().top;
-        (wrapBottom - $(window).scrollTop() <= $('#js-nav > ul').outerHeight()) ? $item.addClass('-fixed-bottom'): $item.removeClass('-fixed-bottom');
-
-    };
-
-    function scrollTo(currentClass) {
-        $('html,body').animate({
-            scrollTop: $('.article-item.' + currentClass).offset().top
-        }, 400);
-
-    };
 
 });
