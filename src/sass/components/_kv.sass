@@ -1,0 +1,66 @@
+.m-kv
+    +size(100%)
+    background-color: #ffffff
+    +position(absolute,0,0)
+    +center
+    overflow: hidden
+    display: none
+    h1
+        font-size: 100px
+        font-weight: 800
+    &__noise
+        // position: absolute
+        pointer-events: none
+        h1
+            background-image: url(map-get($img,noise))
+            color: rgba(map-get($color,main),0.9)
+            background-clip: text
+    &__stroke
+        +position(absolute)
+        z-index: 2
+        h1
+            color: transparent
+            -webkit-text-stroke: 1px rgba(map-get($color,main),0.9)
+    &__img
+        width: 500px
+        +position(absolute)
+        +center(transform)
+        +ratio
+        // border-radius: 99em
+        // overflow: hidden
+        z-index: 1
+        transform-style: preserve-3d
+    &__layer
+        +size(100%)
+        +position(absolute,0,'','',0)
+        &.-back
+            mix-blend-mode: darken
+            clip-path: circle(50%)
+            .a-layer__img
+                background-image: url(map-get($img,back))
+                &::before
+                    content: ''
+                    +size(100%)
+                    +position(absolute,0,0)
+                    mix-blend-mode: lighten
+            &.-c
+                .a-layer__img
+                    &::before
+                        background-color: #0ff
+            &.-m
+                .a-layer__img
+                    &::before
+                        background-color: #f0f
+            &.-y
+                .a-layer__img
+                    &::before
+                        background-color: #ff0
+        &.-front
+            clip-path: circle(50%)
+            .a-layer__img
+                background-image: url(map-get($img,front))
+    .a-layer__img
+        +size(100%)
+        +bg('',center 20%,cover)
+        +position(absolute,0,0)
+        transform: scale(1.1)

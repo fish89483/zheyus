@@ -12,16 +12,24 @@ html(lang="zh-TW")
         //- inject:js
         //- endinject
     body
-        .kv
-            .kv-title
-                .kv-title__stroke
-                    h1 testtesttesttesttest
-                .kv-title__img
+        .a-cursor
+        .wrapper
+            .m-kv#js-kv
+                .m-kv__stroke
+                    h1 testtesttesttest 
+                .m-kv__img
                     each layer in ['back -c','back -m','back -y','front']
-                        .kv-title__layer(class='-'+layer)
-                            .layer-img
-                .kv-title__noise
-                    h1 testtesttesttesttest
-        .cursor
+                        .m-kv__layer(class='-'+layer)
+                            .a-layer__img
+                .m-kv__noise
+                    h1 testtesttesttest
+            .o-carousel
+                .o-carousel__item.-top
+                    //- .test
+                .o-carousel__item.-center
+                .o-carousel__item.-bottom
+            //- .kv
             
-        .content
+            
+                
+            //- .content
