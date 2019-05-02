@@ -6,7 +6,7 @@ html(lang="zh-TW")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Document
         link(rel="stylesheet", href="css/main.css")
-        script(src="js/main.js")
+        
         //- inject:css
         //- endinject
         //- inject:js
@@ -14,22 +14,33 @@ html(lang="zh-TW")
     body
         .a-cursor
         .wrapper
-            .m-kv#js-kv
-                .m-kv__stroke
-                    h1 testtesttesttest 
-                .m-kv__img
-                    each layer in ['back -c','back -m','back -y','front']
-                        .m-kv__layer(class='-'+layer)
-                            .a-layer__img
-                .m-kv__noise
-                    h1 testtesttesttest
+            
             .o-carousel
                 .o-carousel__item.-top
-                    //- .test
+                    .o-carousel__item-title
+                    .o-carousel__item-content
+                        
                 .o-carousel__item.-center
+                    .o-carousel__item-title
+                    .o-carousel__item-content
+                        img
+                    .m-kv#js-kv
+                        .m-kv__stroke
+                            h1 testtesttesttest 
+                        .m-kv__img
+                            each layer in ['back -c','back -m','back -y','front']
+                                .m-kv__layer(class='-'+layer)
+                                    .a-layer__img
+                        .m-kv__noise
+                            h1 testtesttesttest
                 .o-carousel__item.-bottom
+                    .o-carousel__item-title
+                    .o-carousel__item-content
+                        
+                .o-carousel__count
+                    
+                
             //- .kv
             
-            
-                
+    script(src="js/main.js")
             //- .content

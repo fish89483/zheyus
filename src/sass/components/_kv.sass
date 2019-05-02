@@ -1,6 +1,6 @@
 .m-kv
     +size(100%)
-    background-color: #ffffff
+    // background-color: #ffffff
     +position(absolute,0,0)
     +center
     overflow: hidden
@@ -36,6 +36,14 @@
         &.-back
             mix-blend-mode: darken
             clip-path: circle(50%)
+            &::before
+                content: ''
+                +size(100%)
+                +position(absolute,0,'','',0)
+                background-image: url(map-get($img,noise))
+                opacity: 0.05
+                z-index: 100
+                pointer-events: none
             .a-layer__img
                 background-image: url(map-get($img,back))
                 &::before
