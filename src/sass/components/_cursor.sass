@@ -1,0 +1,12 @@
+.a-cursor
+    +size(10px)
+    background-color: map-get($cursor,color)
+    +position(absolute,0,'','',0)
+    border-radius: 99em
+    z-index: 100
+    pointer-events: none
+    transition: map-deep-get($cursor,time,out) transform map-deep-get($cursor,fn,trans), map-deep-get($cursor,time,out) opacity map-deep-get($cursor,fn,opacity)
+    &.-active
+        transform: scale(5)
+        opacity: 0.3
+        transition: map-deep-get($cursor,time,in) transform map-deep-get($cursor,fn,trans), map-deep-get($cursor,time,in) opacity map-deep-get($cursor,fn,opacity)

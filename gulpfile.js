@@ -30,6 +30,7 @@ var concatPath = {
     ],
     js: [
         'node_modules/**/jquery.min.js',
+        'node_modules/**/jquery.mousewheel.js',
         'src/js/min/*.min.js'
     ]
 
@@ -38,7 +39,7 @@ var concatPath = {
 
 
 // 建立預設 gulp task
-gulp.task('html', function () {
+gulp.task('html', function() {
     return gulp.src(path.srcPug)
         .pipe(pug({
             // pretty: true 
@@ -48,7 +49,7 @@ gulp.task('html', function () {
     // .pipe(gulpLivereload())
 })
 
-gulp.task('sass', function () {
+gulp.task('sass', function() {
     return gulp.src(path.srcSass)
         .pipe(sass({
             // outputStyle: 'compressed'
@@ -66,7 +67,7 @@ gulp.task('sass', function () {
 
 });
 // concat
-gulp.task('concat-js', function () {
+gulp.task('concat-js', function() {
     return gulp.src(concatPath.js)
         .pipe(concat('main.js'))
         // .pipe(hash()) // Add hashes to the files' names
@@ -86,7 +87,7 @@ gulp.task('concat-js', function () {
 //         .pipe(gulp.dest(path.distCSS))
 // })
 
-gulp.task('uglify', function () {
+gulp.task('uglify', function() {
     return gulp.src(path.srcJS)
         .pipe(uglify())
         .pipe(rename({
@@ -110,7 +111,7 @@ gulp.task('uglify', function () {
 gulp.task('scripts', gulp.series('uglify', 'concat-js'))
 gulp.task('styles', gulp.series('sass'))
 
-gulp.task('img', function () {
+gulp.task('img', function() {
     return gulp.src('src/images/*')
         .pipe(gulp.dest('dist/images/'))
 })
@@ -125,14 +126,14 @@ gulp.task('img', function () {
 //     return target.pipe(inject(sources))
 //         .pipe(gulp.dest('./src/pug'));
 // })
-gulp.task('server', function () {
+gulp.task('server', function() {
     connect.server({
         root: '',
         livereload: true
     });
 });
 // watch
-gulp.task('watch', function () {
+gulp.task('watch', function() {
     // gulpLivereload.listen();
     gulp.parallel('connect')
     gulp.watch(path.srcSass, gulp.series('styles'));
@@ -140,8 +141,8 @@ gulp.task('watch', function () {
     gulp.watch(path.srcPug, gulp.series('html'));
 });
 
-gulp.task('connect',gulp.parallel('server', 'watch'))
-//start
+gulp.task('connect', gulp.parallel('server', 'watch'))
+    //start
 gulp.task('start', gulp.series('styles', 'scripts', 'html', 'img', 'connect'));
 // gulp.task('start', gulp.series('styles', 'scripts', 'inject', 'html'))
 
@@ -153,7 +154,7 @@ gulp.task('build', gulp.series('styles', 'scripts', 'html', 'img'));
 //         .pipe(hash.manifest('dist/assets.json'))
 //         .pipe(gulp.dest('.')); // Write the manifest file (see note below)
 // })
-gulp.task('deploy', function () {
+gulp.task('deploy', function() {
     return gulp.src('dist/**/*')
         .pipe(ghPages());
 });

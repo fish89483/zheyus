@@ -2,13 +2,9 @@ body
     position: relative
     +size(100%,100vh)
     
+.wrapper
+    +size(100%,100%)
     cursor: none
-.kv
-    +size(100%)
-    background-color: #ffffff
-    +position(absolute,0,0)
-    +center
-    overflow: hidden
     &::before
         content: ''
         +size(100%)
@@ -17,82 +13,5 @@ body
         opacity: 0.05
         z-index: 100
         pointer-events: none
-    h1
-        font-size: 100px
-        font-weight: 800
-    &-title
-        position: relative
-        &__noise
-            // position: absolute
-            pointer-events: none
-            h1
-                background-image: url(map-get($img,noise))
-                color: rgba(map-get($color,main),0.9)
-                background-clip: text
-        &__stroke
-            +position(absolute,0,'','',0)
-            z-index: 2
-            h1
-                color: transparent
-                -webkit-text-stroke: 1px rgba(map-get($color,main),0.9)
-        &__img
-            width: 500px
-            +position(absolute)
-            +center(transform)
-            +ratio
-            // border-radius: 99em
-            // overflow: hidden
-            z-index: 1
-            transform-style: preserve-3d
-        &__layer
-            +size(100%)
-            +position(absolute,0,'','',0)
-            &.-back
-                
-                mix-blend-mode: darken
-                clip-path: circle(50%)
-                .layer-img
-                    background-image: url(map-get($img,back))
-                    &::before
-                        content: ''
-                        +size(100%)
-                        +position(absolute,0,0)
-                        mix-blend-mode: lighten
-                &.-c
-                    .layer-img
-                        &::before
-                            background-color: #0ff
-                &.-m
-                    .layer-img
-                        &::before
-                            background-color: #f0f
-                &.-y
-                    .layer-img
-                        &::before
-                            background-color: #ff0
-            &.-front
-                
-                clip-path: circle(50%)
-                .layer-img
-                    background-image: url(map-get($img,front))
-        .layer-img
-            +size(100%)
-            +bg('',center 20%,cover)
-            +position(absolute,0,0)
-            transform: scale(1.1)
-.cursor
-    +size(10px)
-    background-color: map-get($cursor,color)
-    +position(absolute,0,'','',0)
-    border-radius: 99em
-    z-index: 100
-    pointer-events: none
-    transition: map-deep-get($cursor,time,out) transform map-deep-get($cursor,fn,trans), map-deep-get($cursor,time,out) opacity map-deep-get($cursor,fn,opacity)
-    &.-active
-        transform: scale(5)
-        opacity: 0.3
-        transition: map-deep-get($cursor,time,in) transform map-deep-get($cursor,fn,trans), map-deep-get($cursor,time,in) opacity map-deep-get($cursor,fn,opacity)
-        
-.content
-    width: 100%
-    min-height: 1800px
+
+
