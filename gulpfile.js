@@ -89,7 +89,7 @@ gulp.task('concat-js', function() {
 
 gulp.task('uglify', function() {
     return gulp.src(path.srcJS)
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(rename({
             dirname: '',
             suffix: ".min"
