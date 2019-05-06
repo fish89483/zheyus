@@ -94,7 +94,7 @@ function updateTitle() {
 
     $hideTop.find('.o-carousel__item-title').html(itemList[hTopIndex][0])
     $hideBottom.find('.o-carousel__item-title').html(itemList[hBottomIndex][0])
-
+    
     $itemCenter.find('.o-carousel__item-title').html(itemList[currentIndex][0])
     $itemTop.find('.o-carousel__item-title').html(itemList[prevIndex][0])
     $itemBottom.find('.o-carousel__item-title').html(itemList[nextIndex][0])
