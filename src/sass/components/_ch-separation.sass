@@ -1,0 +1,25 @@
+// _ch-separation
+
+.m-ch-separation__img
+    mix-blend-mode: darken
+    .a-ch-img
+        // background-image: url($img)
+        &::before
+            content: ''
+            +size(100%)
+            +position(absolute,0,0)
+            mix-blend-mode: lighten
+    &.-ch-c
+        .a-ch-img::before
+            background-color: #0ff
+    &.-ch-m
+        .a-ch-img::before
+            background-color: #f0f
+    &.-ch-y
+        .a-ch-img::before
+            background-color: #ff0
+
+.a-ch-img
+    +size(100%)
+    +bg('',center,cover)
+    +position(absolute,0,0)

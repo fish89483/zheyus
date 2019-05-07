@@ -17,6 +17,7 @@ var $itemCountTxt = $('.o-carousel__count');
 var itemLen = itemList.length;
 var moveDelay = 1000;
 var isMove = true;
+var isActive_KV = true;
 var currentIndex = 0,
     prevIndex, nextIndex, hTopIndex, hBottomIndex;
 
@@ -61,11 +62,24 @@ function move(dir) {
         $item.offset()
         $item.removeClass('-stop')
         $item.addClass('-start')
+        
+        $item.removeClass('animate')
         setTimeout(function() {
             $item.removeClass('-start -' + dir)
+            $item.addClass('animate')
             isMove = true;
         }, moveDelay)
 
+        // if(dir == 'prev'){
+        //     $('#js-kv')
+        // }
+        if(currentIndex == 0 && $('#js-kv').hasClass('fadeOut')){
+            $('#js-kv').addClass('-active').removeClass('fadeOut')
+            isActive_KV = true
+        }else{
+            $('#js-kv').addClass('fadeOut').removeClass('-active')
+            isActive_KV = false
+        }
 
         $itemCountTxt.html(currentIndex + 1 + ' / ' + itemLen)
 
@@ -101,17 +115,6 @@ function updateTitle() {
 }
 
 function updateContent() {
-    // var prevIndex = currentIndex - 1
-    // var nextIndex = currentIndex + 1
-
-    // if (prevIndex < 0) prevIndex = itemLen - 1;
-    // if (currentIndex >= itemLen - 1) nextIndex = 0;
-
-    // var hTopIndex = prevIndex - 1;
-    // var hBottomIndex = nextIndex + 1;
-
-    // if (hTopIndex < 0) hTopIndex = itemLen - 1;
-    // if (hBottomIndex >= itemLen) hBottomIndex = 0;
 
     $hideTop.find('img').attr('src', 'images/' + itemList[hTopIndex][1])
     $hideBottom.find('img').attr('src', 'images/' + itemList[hBottomIndex][1])
@@ -119,6 +122,7 @@ function updateContent() {
     $itemTop.find('img').attr('src', 'images/' + itemList[prevIndex][1])
     $itemCenter.find('img').attr('src', 'images/' + itemList[currentIndex][1])
     $itemBottom.find('img').attr('src', 'images/' + itemList[nextIndex][1])
+    
 
 
 }

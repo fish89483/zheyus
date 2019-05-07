@@ -3,18 +3,22 @@
     // background-color: #ffffff
     +position(absolute,0,0)
     +center
-    overflow: hidden
-    display: none
+    // overflow: hidden
+    // display: none
+    // transition: map-get($time, moveDelay)
+    opacity: 0.1
+    &.fadeOut
+        opacity: 0
     h1
         font-size: 100px
         font-weight: 800
     &__noise
         // position: absolute
         pointer-events: none
-        h1
-            background-image: url(map-get($img,noise))
+        h1            
             color: rgba(map-get($color,main),0.9)
             background-clip: text
+            +noise('bg')
     &__stroke
         +position(absolute)
         z-index: 2
@@ -34,41 +38,15 @@
         +size(100%)
         +position(absolute,0,'','',0)
         &.-back
-            mix-blend-mode: darken
             clip-path: circle(50%)
-            &::before
-                content: ''
-                +size(100%)
-                +position(absolute,0,'','',0)
-                background-image: url(map-get($img,noise))
-                opacity: 0.05
-                z-index: 100
-                pointer-events: none
-            .a-layer__img
+            +noise
+            .a-ch-img
                 background-image: url(map-get($img,back))
-                &::before
-                    content: ''
-                    +size(100%)
-                    +position(absolute,0,0)
-                    mix-blend-mode: lighten
-            &.-c
-                .a-layer__img
-                    &::before
-                        background-color: #0ff
-            &.-m
-                .a-layer__img
-                    &::before
-                        background-color: #f0f
-            &.-y
-                .a-layer__img
-                    &::before
-                        background-color: #ff0
         &.-front
             clip-path: circle(50%)
-            .a-layer__img
+            .a-ch-img
                 background-image: url(map-get($img,front))
-    .a-layer__img
-        +size(100%)
+    .a-ch-img
         +bg('',center 20%,cover)
-        +position(absolute,0,0)
         transform: scale(1.1)
+

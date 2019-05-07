@@ -8,42 +8,47 @@
         position: relative
         border: 1px solid
         height: 50%
-        // height: 20%
         &.-top,&.-bottom
-            // height: 20%
+            
+            opacity: 0
         &.-center
-            // height: 60%
-        // &.-current
-        //     img
-        //         top: -50%
+        &.-hide-top,&.-hide-bottom
+            opacity: 0
         &.-start
-            img
-                transition: 1s
+            .o-carousel__item-content
+                transition: map-get($time, moveDelay) 
         &.-stop
-            img
+            .o-carousel__item-content
                 transition: 0s
         &.-stop
             &.-next
-                img
+                .o-carousel__item-content
                     top: 100%
                     transform: translate(-50%,0)
             &.-prev
-                img
+                .o-carousel__item-content
                     top: -100%
                     transform: translate(-50%,0)
-
+        &.animate
+            img
+                transform: scale(1)
+                transition: 400ms
         &-title
-            position: relative
+            position: absolute
             z-index: 1
         &-content
             +size(100%)
-            +position(absolute,0)
+            +position(absolute)
+            +center(transform)
 
             img
                 +size(auto,100%)
                 display: block
-                position: absolute
-                +center(transform)
+                margin: 0 auto
+                transform: scale(1.1)
+                // position: absolute
+                // +center(transform)
+                transition: 100ms
     &__count
         position: absolute
         bottom: 10px

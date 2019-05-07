@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
-    connect = require('gulp-connect');
+    connect = require('gulp-connect'),
+    inject = require('gulp-inject');
 // gulpLivereload = require('gulp-livereload')
 var path = {
     src: 'src/**/*',
@@ -64,8 +65,14 @@ gulp.task('sass', function() {
         .pipe(connect.reload());
     // .pipe(gulpLivereload())
 
-
 });
+gulp.task('index', function () {
+    var target = gulp.src('./src/sass/abstracts/__abstracts.sass');
+    var sources = gulp.src('./src/sass/abstracts/_*.sass');
+   
+    return target.pipe(inject(sources))
+      .pipe(gulp.dest('./src/what/'));
+  });
 // concat
 gulp.task('concat-js', function() {
     return gulp.src(concatPath.js)

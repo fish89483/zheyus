@@ -1,0 +1,23 @@
+@charset "UTF-8"
+
+@mixin noise($target:'before')
+    @if $target == 'bg'
+        background-image: url(map-get($img,noise))
+    @else if $target == 'before' or $target == 'after'
+        &::#{quote($target)}
+            content: ''
+            +size(100%)
+            +position(absolute,0,'','',0)
+            background-image: url(map-get($img,noise))
+            opacity: 0.05
+            z-index: 100
+            pointer-events: none
+    @else
+        #{quote($target)}
+            +size(100%)
+            +position(absolute,0,'','',0)
+            background-image: url(map-get($img,noise))
+            opacity: 0.05
+            z-index: 100
+            pointer-events: none
+
