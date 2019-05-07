@@ -6,8 +6,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
-    connect = require('gulp-connect'),
-    inject = require('gulp-inject');
+    connect = require('gulp-connect');
 // gulpLivereload = require('gulp-livereload')
 var path = {
     src: 'src/**/*',
@@ -66,13 +65,7 @@ gulp.task('sass', function() {
     // .pipe(gulpLivereload())
 
 });
-gulp.task('index', function () {
-    var target = gulp.src('./src/sass/abstracts/__abstracts.sass');
-    var sources = gulp.src('./src/sass/abstracts/_*.sass');
-   
-    return target.pipe(inject(sources))
-      .pipe(gulp.dest('./src/what/'));
-  });
+
 // concat
 gulp.task('concat-js', function() {
     return gulp.src(concatPath.js)
@@ -123,16 +116,6 @@ gulp.task('img', function() {
         .pipe(gulp.dest('dist/images/'))
 })
 
-// gulp.task('inject', function () {
-//     var target = gulp.src('./src/pug/test.pug');
-//     // It's not necessary to read the files (will speed up things), we're only after their paths:
-//     var sources = gulp.src(['./dist/js/*.js', './dist/css/*.css'], {
-//         read: false
-//     });
-
-//     return target.pipe(inject(sources))
-//         .pipe(gulp.dest('./src/pug'));
-// })
 gulp.task('server', function() {
     connect.server({
         root: '',
