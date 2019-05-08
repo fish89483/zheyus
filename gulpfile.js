@@ -128,7 +128,7 @@ gulp.task('watch', function() {
     gulp.parallel('connect')
     gulp.watch(path.srcSass, gulp.series('styles'));
     gulp.watch(path.srcJS, gulp.series('scripts'));
-    gulp.watch(path.srcPug, gulp.series('html'));
+    gulp.watch([path.srcPug,'src/pug/**/*.pug'], gulp.series('html'));
 });
 
 gulp.task('connect', gulp.parallel('server', 'watch'))

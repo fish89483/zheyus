@@ -6,53 +6,27 @@ html(lang="zh-TW")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Document
         link(rel="stylesheet", href="css/main.css")
-        
-        //- inject:css
-        //- endinject
-        //- inject:js
-        //- endinject
+
+     
     body
         .a-cursor
         .wrapper
-            
             .o-carousel
-                .o-carousel__item.-hide-top
-                    .o-carousel__item-content
-                        .o-carousel__item-title
-                        img
-                .o-carousel__item.-top
-                    .o-carousel__item-content
-                        .o-carousel__item-title
-                        img
-                        
-                .o-carousel__item.-center
-                    .o-carousel__item-content
-                        .o-carousel__item-title
-                        img
-                        .m-kv#js-kv
-                            .m-kv__stroke
-                                h1 testtesttesttest 
-                            .m-kv__img
-                                each layer in ['c','m','y']
-                                    .m-kv__layer(class=`m-ch-separation__img -back -ch-${layer}`)
-                                        .a-ch-img
-                                .m-kv__layer.-front
-                                    .a-ch-img
-                            .m-kv__noise
-                                h1 testtesttesttest
-                .o-carousel__item.-bottom
-                    .o-carousel__item-content
-                        .o-carousel__item-title
-                        img
-                
-                .o-carousel__item.-hide-bottom
-                    .o-carousel__item-content
-                        .o-carousel__item-title
-                        img
+                - var items = ['hide-top','top','center','bottom','hide-bottom']
+                each item in items
+                    .o-carousel__item(class=`-${item}`)
+                        .o-carousel__item-content
+                            .o-carousel__item-title
+                        .o-carousel__item-img
+                            img
+                            if item == 'center'
+                                //- .kv
+                                include include/kv.pug
+
                 .o-carousel__count
-                    
+
+
                 
-            //- .kv
             
     script(src="js/main.js")
             //- .content

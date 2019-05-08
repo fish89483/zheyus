@@ -6,6 +6,7 @@
     z-index: 100
     pointer-events: none
     transition: map-deep-get($cursor,time,out) transform map-deep-get($cursor,fn,trans), map-deep-get($cursor,time,out) opacity map-deep-get($cursor,fn,opacity)
+    will-change: transform
     &.-active
         transform: scale(5)
         opacity: 0.3

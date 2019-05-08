@@ -5,21 +5,7 @@ body
 .wrapper
     +size(100%,100%)
     cursor: none
-
-.o-carousel__item
-    &.-stop
-        .m-kv
-            transition: 0s
-    &.-next.-stop
-        .m-kv.fadeOut
-            top: 300%
-    &.-prev.-stop
-        .m-kv.fadeOut
-            top: -300%
-    
-    &.-next
-        .m-kv.fadeOut
-            top: 100%
-    &.-prev
-        .m-kv.fadeOut
-            top: -100%
+.container
+    width: 100%
+    max-width: 1200px
+    margin: 0 auto

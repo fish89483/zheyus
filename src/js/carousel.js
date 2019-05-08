@@ -1,11 +1,11 @@
 var itemList = [
-    ['title 1', 't1.jpg'],
+    ['title 1', ''],
     ['title 2', 't2.jpg'],
     ['title 3', 't3.jpg'],
     ['title 4', 't4.jpg'],
-    ['title 5', 't5.jpg']
+    // ['title 5', 't5.jpg']
 ];
-var $item = $('.o-carousel__item')
+var $item = $('.o-carousel__item');
 var $itemTop = $('.o-carousel__item.-top');
 var $itemCenter = $('.o-carousel__item.-center');
 var $itemBottom = $('.o-carousel__item.-bottom');
@@ -15,9 +15,10 @@ var $hideBottom = $('.o-carousel__item.-hide-bottom');
 var $itemCountTxt = $('.o-carousel__count');
 
 var itemLen = itemList.length;
-var moveDelay = 1000;
+var time_MOVE = 500;
 var isMove = true;
 var isActive_KV = true;
+
 var currentIndex = 0,
     prevIndex, nextIndex, hTopIndex, hBottomIndex;
 
@@ -37,6 +38,7 @@ $(window).on('touchmove', function(e) {
 $(window).on('touchend', function(e) {
     var move = startY - endY;
     var dir = (move > 100 || move < -100) ? 'next' : 'prev';
+    move(dir);
 });
 
 // function countTxtNum(num) {
@@ -63,29 +65,23 @@ function move(dir) {
         $item.removeClass('-stop')
         $item.addClass('-start')
         
-        $item.removeClass('animate')
+        $item.removeClass('-animate')
         setTimeout(function() {
             $item.removeClass('-start -' + dir)
-            $item.addClass('animate')
+            $item.addClass('-animate')
             isMove = true;
-        }, moveDelay)
+        }, time_MOVE)
 
-        // if(dir == 'prev'){
-        //     $('#js-kv')
-        // }
-        if(currentIndex == 0 && $('#js-kv').hasClass('fadeOut')){
-            $('#js-kv').addClass('-active').removeClass('fadeOut')
-            isActive_KV = true
-        }else{
-            $('#js-kv').addClass('fadeOut').removeClass('-active')
-            isActive_KV = false
-        }
 
         $itemCountTxt.html(currentIndex + 1 + ' / ' + itemLen)
 
         countIndex()
         updateTitle();
-        updateContent();
+
+        setTimeout(function() {
+            carouselActive()
+            updateContent();
+        }, time_MOVE)
     };
 }
 
@@ -116,15 +112,24 @@ function updateTitle() {
 
 function updateContent() {
 
-    $hideTop.find('img').attr('src', 'images/' + itemList[hTopIndex][1])
+    $hideTop.find('.img').attr('src', 'images/' + itemList[hTopIndex][1])
     $hideBottom.find('img').attr('src', 'images/' + itemList[hBottomIndex][1])
 
     $itemTop.find('img').attr('src', 'images/' + itemList[prevIndex][1])
     $itemCenter.find('img').attr('src', 'images/' + itemList[currentIndex][1])
     $itemBottom.find('img').attr('src', 'images/' + itemList[nextIndex][1])
-    
-
-
+ 
+}
+function carouselActive(){
+    if(currentIndex == 0 ){
+        $('#js-kv').addClass('-active')
+        $itemCenter.find('img').hide()
+        isActive_KV = true
+    }else{
+        $itemCenter.find('img').show()
+        $('#js-kv').removeClass('-active')
+        isActive_KV = false
+    }
 }
 $(function() {
     var windowHeight = $(window).outerHeight()
@@ -132,4 +137,6 @@ $(function() {
     countIndex()
     updateTitle();
     updateContent();
+    carouselActive();
+    setTimeout(function() {$item.addClass('-animate')}, time_MOVE)
 });
