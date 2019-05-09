@@ -2,8 +2,10 @@
 
 @mixin noise($target:'before')
     @if $target == 'bg'
+        // background
         background-image: url(map-get($img,noise))
     @else if $target == 'before' or $target == 'after'
+        // use before or after
         &::#{quote($target)}
             content: ''
             +size(100%)
@@ -13,6 +15,7 @@
             z-index: 100
             pointer-events: none
     @else
+        // other: byClass or byId
         #{quote($target)}
             +size(100%)
             +position(absolute,0,'','',0)

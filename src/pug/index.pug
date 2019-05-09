@@ -10,17 +10,22 @@ html(lang="zh-TW")
      
     body
         .a-cursor
+            span
         .wrapper
             .o-carousel
                 - var items = ['hide-top','top','center','bottom','hide-bottom']
                 each item in items
                     .o-carousel__item(class=`-${item}`)
-                        .o-carousel__item-content
-                            .o-carousel__item-title
-                        .o-carousel__item-img
-                            img
+
+                        .o-carousel__txt
+                            //- title
+                            .m-carousel__title
+
+                        .o-carousel__content
+                            //- item
+                            .m-carousel__item
+                            //- kv
                             if item == 'center'
-                                //- .kv
                                 include include/kv.pug
 
                 .o-carousel__count
@@ -29,4 +34,3 @@ html(lang="zh-TW")
                 
             
     script(src="js/main.js")
-            //- .content

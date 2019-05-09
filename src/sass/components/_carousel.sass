@@ -6,9 +6,8 @@ $target: '.o-carousel__item-content'
     position: relative
     overflow: hidden
     &__item
-        width: 100%
+        +size(100%,50%)
         position: relative
-        height: 50%
         &.-top,&.-bottom
             
             // opacity: 0
@@ -34,36 +33,40 @@ $target: '.o-carousel__item-content'
                     top: -100%
                     transform: translate(-50%,0)
         &.-animate
-            .o-carousel__item-img 
+            .o-carousel__content
                 +center(transform)
                 transform: translate(-50%,-50%) rotateX(0deg)
                 opacity: 1
                 transition: 250ms
-        &-title
-            position: absolute
-            z-index: 1
-        &-content
-            +size(100%)
-            +position(absolute)
-            +center(transform)
+    &__txt
+        +size(100%)
+        +position(absolute)
+        +center(transform)
 
-        .o-carousel__item-img 
-            +size(100%)
-            +center(transform)
-            transform: translate(-40%,-50%) rotateX(95deg)
-            position: absolute
-            transition: 250ms
-            opacity: 0
-            display: flex
-            justify-content: flex-end
-            perspective: 2000px
-            img
-                height: 100%
-                display: block
-                will-change: transform
+    &__content
+        +size(100%)
+        +center(transform)
+        transform: translate(-40%,-50%) rotateX(95deg)
+        position: absolute
+        transition: 250ms
+        opacity: 0
+        display: flex
+        justify-content: flex-end
+        perspective: 2000px
 
     &__count
+        +position(absolute,'',0,0)
+
+.m-carousel
+    &__title
         position: absolute
-        bottom: 10px
-        right: 10px
-    
+        z-index: 1
+
+    &__item
+        +size(43.5%,100%)
+        
+        +bg('',center,cover)
+        +position(absolute)
+        +noise('after')
+        // +ratio(16,9)
+        will-change: transform

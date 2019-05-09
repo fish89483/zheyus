@@ -102,41 +102,55 @@ function countIndex() {
 
 function updateTitle() {
 
-    $hideTop.find('.o-carousel__item-title').html(itemList[hTopIndex][0])
-    $hideBottom.find('.o-carousel__item-title').html(itemList[hBottomIndex][0])
+    $hideTop.find('.m-carousel__title').html(itemList[hTopIndex][0])
+    $hideBottom.find('.m-carousel__title').html(itemList[hBottomIndex][0])
     
-    $itemCenter.find('.o-carousel__item-title').html(itemList[currentIndex][0])
-    $itemTop.find('.o-carousel__item-title').html(itemList[prevIndex][0])
-    $itemBottom.find('.o-carousel__item-title').html(itemList[nextIndex][0])
+    $itemCenter.find('.m-carousel__title').html(itemList[currentIndex][0])
+    $itemTop.find('.m-carousel__title').html(itemList[prevIndex][0])
+    $itemBottom.find('.m-carousel__title').html(itemList[nextIndex][0])
 }
 
 function updateContent() {
 
-    $hideTop.find('.img').attr('src', 'images/' + itemList[hTopIndex][1])
-    $hideBottom.find('img').attr('src', 'images/' + itemList[hBottomIndex][1])
+    // $hideTop.find('img').attr('src', 'images/' + itemList[hTopIndex][1])
+    // $hideBottom.find('img').attr('src', 'images/' + itemList[hBottomIndex][1])
 
-    $itemTop.find('img').attr('src', 'images/' + itemList[prevIndex][1])
-    $itemCenter.find('img').attr('src', 'images/' + itemList[currentIndex][1])
-    $itemBottom.find('img').attr('src', 'images/' + itemList[nextIndex][1])
+    // $itemTop.find('img').attr('src', 'images/' + itemList[prevIndex][1])
+    // $itemCenter.find('img').attr('src', 'images/' + itemList[currentIndex][1])
+    // $itemBottom.find('img').attr('src', 'images/' + itemList[nextIndex][1])
+    $hideTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hTopIndex][1]+')')
+    $hideBottom.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hBottomIndex][1]+')')
+
+    $itemTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[prevIndex][1]+')')
+    $itemCenter.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[currentIndex][1]+')')
+    $itemBottom.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[nextIndex][1]+')')
  
 }
 function carouselActive(){
     if(currentIndex == 0 ){
         $('#js-kv').addClass('-active')
-        $itemCenter.find('img').hide()
+        $itemCenter.find('.m-carousel__item').hide()
         isActive_KV = true
     }else{
-        $itemCenter.find('img').show()
+        $itemCenter.find('.m-carousel__item').show()
         $('#js-kv').removeClass('-active')
         isActive_KV = false
     }
 }
 $(function() {
-    var windowHeight = $(window).outerHeight()
-    $hideTop.css('margin-top', windowHeight / 2 * -1.5 + 'px')
+    
+    setCarouselOffset()
+    
     countIndex()
     updateTitle();
     updateContent();
     carouselActive();
     setTimeout(function() {$item.addClass('-animate')}, time_MOVE)
 });
+$( window ).resize(function() {
+    setCarouselOffset()
+})
+function setCarouselOffset(){
+    var windowHeight = $(window).outerHeight()
+    $hideTop.css('margin-top', windowHeight / 2 * -1.5 + 'px')
+}
