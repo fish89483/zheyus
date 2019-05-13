@@ -1,4 +1,4 @@
-$target: '.o-carousel__item-content'
+$target: '.o-carousel__txt'
     
   
 .o-carousel
@@ -13,8 +13,10 @@ $target: '.o-carousel__item-content'
             // opacity: 0
         &.-center
         &.-top,&.-bottom,&.-hide-top,&.-hide-bottom
-            opacity: 0
-            pointer-events: none
+            .o-carousel__content
+                opacity: 0
+                pointer-events: none
+                display: none
         &.-hide-top,&.-hide-bottom
             // opacity: 0
         &.-start
@@ -59,7 +61,7 @@ $target: '.o-carousel__item-content'
 
 .m-carousel
     &__title
-        position: absolute
+        // position: absolute
         z-index: 1
 
     &__item
