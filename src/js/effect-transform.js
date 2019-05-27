@@ -40,18 +40,15 @@ $(function () {
     });
     
     var $item_img = $('.m-carousel__item');
-<<<<<<< HEAD
     $item_img.on('mousemove mousein', function (e) {
        
         
         /// $item_img.css('transform', 'rotateY(' + imgRotate + 'deg) rotateX(' + moveX * str / 3 + 'deg)');
 
     });
-=======
     // $item_img.on('mousemove mousein', function (e) {        
     // $item_img.css('transform', 'rotateY(' + imgRotate + 'deg) rotateX(' + moveX * str / 3 + 'deg)');
     // });
->>>>>>> origin/master
     $item_img.on('mouseleave',function(e){
         // $item_img.css('transition','200ms')
         $item_img.css('transform', 'rotateY(0deg) rotateX(0deg)');
