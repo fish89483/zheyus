@@ -3,7 +3,7 @@ var itemList = [
     ['title 2', 't2.jpg'],
     ['title 3', 't3.jpg'],
     ['title 4', 't4.jpg'],
-    // ['title 5', 't5.jpg']
+    ['title 5', 't5.jpg']
 ];
 var $item = $('.o-carousel__item');
 var $itemTop = $('.o-carousel__item.-top');
@@ -19,8 +19,7 @@ var time_MOVE = 500;
 var isMove = true;
 var isActive_KV = true;
 
-var currentIndex = 0,
-    prevIndex, nextIndex, hTopIndex, hBottomIndex;
+var currentIndex = 0, prevIndex, nextIndex, hTopIndex, hBottomIndex;
 
 
 $(window).on('mousewheel', function(e) {
@@ -79,7 +78,7 @@ function move(dir) {
         updateTitle();
 
         setTimeout(function() {
-            carouselActive()
+            setCarouselActive()
             updateContent();
         }, time_MOVE)
     };
@@ -118,6 +117,7 @@ function updateContent() {
     // $itemTop.find('img').attr('src', 'images/' + itemList[prevIndex][1])
     // $itemCenter.find('img').attr('src', 'images/' + itemList[currentIndex][1])
     // $itemBottom.find('img').attr('src', 'images/' + itemList[nextIndex][1])
+    
     $hideTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hTopIndex][1]+')')
     $hideBottom.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hBottomIndex][1]+')')
 
@@ -126,7 +126,7 @@ function updateContent() {
     $itemBottom.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[nextIndex][1]+')')
  
 }
-function carouselActive(){
+function setCarouselActive(){
     if(currentIndex == 0 ){
         $('#js-kv').addClass('-active')
         $itemCenter.find('.m-carousel__item').hide()
@@ -144,13 +144,14 @@ $(function() {
     countIndex()
     updateTitle();
     updateContent();
-    carouselActive();
+    setCarouselActive();
     setTimeout(function() {$item.addClass('-animate')}, time_MOVE)
 });
 $( window ).resize(function() {
     setCarouselOffset()
 })
 function setCarouselOffset(){
-    var windowHeight = $(window).outerHeight()
-    $hideTop.css('margin-top', windowHeight / 2 * -1.5 + 'px')
+    var windowHeight = $(window).outerHeight();
+    var itemHeightPercent = 0.5;
+    $hideTop.css('margin-top', (windowHeight * itemHeightPercent * itemLen - windowHeight) / 2 * -1 + 'px');
 }
