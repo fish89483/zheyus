@@ -21,7 +21,7 @@ $target: '.o-carousel__txt'
             // opacity: 0
         &.-start
             #{quote($target)}
-                transition: map-get($time, move) 
+                transition: map-get($time, carousel-move) 
         &.-stop
             #{quote($target)}
                 transition: 0s
@@ -72,3 +72,4 @@ $target: '.o-carousel__txt'
         +noise('after')
         // +ratio(16,9)
         will-change: transform
+        transition: 100ms linear
