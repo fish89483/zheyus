@@ -5,14 +5,14 @@
     +center
     // overflow: hidden
     // display: none
-    transition: map-get($time, move) map-get($time, move) /4*3*-1
+    transition: map-get($time, carousel-move) map-get($time, carousel-move) /4*3*-1
     opacity: 0
     pointer-events: none
     &.-active
         opacity: 0
         opacity: 1
         pointer-events: auto
-        transition: map-get($time, move)
+        transition: map-get($time, carousel-move)
     h1
         font-size: 100px
         font-weight: 800
