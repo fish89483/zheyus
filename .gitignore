@@ -1,3 +1,5 @@
 node_modules
 .publish
 dist
+src/images/*.psd
+src/js/min

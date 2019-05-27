@@ -126,6 +126,7 @@ gulp.task('server', function() {
 gulp.task('watch', function() {
     // gulpLivereload.listen();
     gulp.parallel('connect')
+    gulp.watch('src/images/*', gulp.series('img'))
     gulp.watch(path.srcSass, gulp.series('styles'));
     gulp.watch(path.srcJS, gulp.series('scripts'));
     gulp.watch([path.srcPug,'src/pug/**/*.pug'], gulp.series('html'));
