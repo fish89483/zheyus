@@ -1,9 +1,9 @@
 var itemList = [
-    ['title 1', ''],
-    ['title 2', 't2.jpg'],
-    ['title 3', 't3.jpg'],
-    ['title 4', 't4.jpg'],
-    ['title 5', 't5.jpg']
+    ['title 1', '',''],
+    ['聖示宮祖號', 't2.jpg','2Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
+    ['title 3', 't3.jpg','3Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
+    ['title 4', 't4.jpg','4Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
+    ['title 5', 't5.jpg','5Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.']
 ];
 var $item = $('.o-carousel__item');
 var $itemTop = $('.o-carousel__item.-top');
@@ -18,7 +18,6 @@ var itemLen = itemList.length;
 var time_MOVE = 500;
 var isMove = true;
 var isActive_KV = true;
-
 var currentIndex = 0, prevIndex, nextIndex, hTopIndex, hBottomIndex;
 
 
@@ -75,7 +74,7 @@ function move(dir) {
         $itemCountTxt.html(currentIndex + 1 + ' / ' + itemLen)
 
         countIndex()
-        updateTitle();
+        updateTxt();
 
         setTimeout(function() {
             setCarouselActive()
@@ -99,14 +98,21 @@ function countIndex() {
     if (hBottomIndex >= itemLen) hBottomIndex = 0;
 }
 
-function updateTitle() {
+function updateTxt() {
 
     $hideTop.find('.m-carousel__title').html(itemList[hTopIndex][0])
     $hideBottom.find('.m-carousel__title').html(itemList[hBottomIndex][0])
-    
     $itemCenter.find('.m-carousel__title').html(itemList[currentIndex][0])
     $itemTop.find('.m-carousel__title').html(itemList[prevIndex][0])
     $itemBottom.find('.m-carousel__title').html(itemList[nextIndex][0])
+
+    $hideTop.find('.m-carousel__txt').html(itemList[hTopIndex][2])
+    $hideBottom.find('.m-carousel__txt').html(itemList[hBottomIndex][2])
+    $itemCenter.find('.m-carousel__txt').html(itemList[currentIndex][2])
+    $itemTop.find('.m-carousel__txt').html(itemList[prevIndex][2])
+    $itemBottom.find('.m-carousel__txt').html(itemList[nextIndex][2])
+
+    
 }
 
 function updateContent() {
@@ -128,30 +134,33 @@ function updateContent() {
 }
 function setCarouselActive(){
     if(currentIndex == 0 ){
-        $('#js-kv').addClass('-active')
-        $itemCenter.find('.m-carousel__item').hide()
-        isActive_KV = true
+        $('#js-kv').addClass('-active');
+        $itemCenter.find('.m-carousel__item').hide();
+        isActive_KV = true;
     }else{
-        $itemCenter.find('.m-carousel__item').show()
-        $('#js-kv').removeClass('-active')
-        isActive_KV = false
+        $itemCenter.find('.m-carousel__item').show();
+        $('#js-kv').removeClass('-active');
+        isActive_KV = false;
     }
-}
+};
+
 $(function() {
     
     setCarouselOffset()
     
     countIndex()
-    updateTitle();
+    updateTxt();
     updateContent();
     setCarouselActive();
     setTimeout(function() {$item.addClass('-animate')}, time_MOVE)
 });
+
 $( window ).resize(function() {
     setCarouselOffset()
-})
+});
+
 function setCarouselOffset(){
     var windowHeight = $(window).outerHeight();
     var itemHeightPercent = 0.5;
     $hideTop.css('margin-top', (windowHeight * itemHeightPercent * itemLen - windowHeight) / 2 * -1 + 'px');
-}
+};

@@ -89,7 +89,7 @@ gulp.task('concat-js', function() {
 
 gulp.task('uglify', function() {
     return gulp.src(path.srcJS)
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(rename({
             dirname: '',
             suffix: ".min"
@@ -145,6 +145,9 @@ gulp.task('build', gulp.series('styles', 'scripts', 'html', 'img'));
 //         .pipe(hash.manifest('dist/assets.json'))
 //         .pipe(gulp.dest('.')); // Write the manifest file (see note below)
 // })
+
+
+// deploy to gh-pages
 gulp.task('deploy', function() {
     return gulp.src('dist/**/*')
         .pipe(ghPages());
