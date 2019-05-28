@@ -8,7 +8,12 @@ $target: '.o-carousel__txt'
     &__item
         +size(100%,50%)
         position: relative
-        &.-top,&.-bottom
+        &.-top
+        //     .m-carousel__title
+        //         transform: translateY(100%)
+        // &.-bottom
+        //     .m-carousel__title
+        //         transform: translateY(-100%)
             
             // opacity: 0
         &.-center
@@ -40,10 +45,25 @@ $target: '.o-carousel__txt'
                 transform: translate(-50%,-50%) rotateX(0deg)
                 opacity: 1
                 transition: 250ms
+            &.-center
+                .m-carousel__title
+                    
+                    // -webkit-text-stroke: 1px #000
+                    color: rgba(0,0,0,1)
+                    // opacity: 1
+                    transition: 250ms ease
+                    
+                .m-carousel__txt
+                    opacity: 1
+                    transform: translateY(0px)
+                    transition: 250ms ease
+                    // position: static
     &__txt
         +size(100%)
         +position(absolute)
         +center(transform)
+        display: flex
+        align-items: center
 
     &__content
         +size(100%)
@@ -62,14 +82,26 @@ $target: '.o-carousel__txt'
 .m-carousel
     &__txt-item
         width: 50%
+        z-index: 1
     
     &__title
+        display: block
+        +size(100%,80px)
+        font-size: 5em
+        font-weight: bold
+        -webkit-text-stroke: 1px #000
+        color: rgba(0,0,0,.1)
+    &__txt
+        display: block
+        +size(100%,150px)
+        margin-top: 30px
+        opacity: 0
+        transform: translateY(20%)
+        // transition: 50ms
         // position: absolute
-        z-index: 1
 
     &__item
         +size(43.5%,100%)
-        
         +bg('',center,cover)
         +position(absolute)
         +noise('after')

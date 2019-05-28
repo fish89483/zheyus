@@ -1,9 +1,9 @@
 var itemList = [
-    ['title 1', '',''],
-    ['聖示宮祖號', 't2.jpg','2Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
-    ['title 3', 't3.jpg','3Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
-    ['title 4', 't4.jpg','4Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
-    ['title 5', 't5.jpg','5Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.']
+    ['', '', ''],
+    ['聖示宮祖號', 't2.jpg', '2Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
+    ['title 3', 't3.jpg', '3Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
+    ['title 4', 't4.jpg', '4Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
+    ['title 5', 't5.jpg', '5Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.']
 ];
 var $item = $('.o-carousel__item');
 var $itemTop = $('.o-carousel__item.-top');
@@ -18,27 +18,34 @@ var itemLen = itemList.length;
 var time_MOVE = 500;
 var isMove = true;
 var isActive_KV = true;
-var currentIndex = 0, prevIndex, nextIndex, hTopIndex, hBottomIndex;
+var currentIndex = 0,
+    prevIndex, nextIndex, hTopIndex, hBottomIndex;
 
 
-$(window).on('mousewheel', function(e) {
+$(window).on('mousewheel', function (e) {
     var dir = (e.deltaY < 0) ? 'next' : 'prev';
     move(dir);
 })
 
 var startY, endY;
-$(window).on('touchstart', function(e) {
+$(window).on('touchstart', function (e) {
     startY = e.touches[0].clientY;
 });
-$(window).on('touchmove', function(e) {
+$(window).on('touchmove', function (e) {
     endY = e.touches[0].clientY;
 });
-$(window).on('touchend', function(e) {
+$(window).on('touchend', function (e) {
     var move = startY - endY;
     var dir = (move > 100 || move < -100) ? 'next' : 'prev';
     move(dir);
 });
-
+$(window).on('keydown', function (e) {
+    var code = e.which;
+    var dir = (code == 40) ? 'next' : (code == 38) ? 'prev' : '';
+    if(dir != '') move(dir);
+    
+    
+})
 // function countTxtNum(num) {
 //     return ('0' + num).slice(-2)
 // }
@@ -62,9 +69,9 @@ function move(dir) {
         $item.offset()
         $item.removeClass('-stop')
         $item.addClass('-start')
-        
+
         $item.removeClass('-animate')
-        setTimeout(function() {
+        setTimeout(function () {
             $item.removeClass('-start -' + dir)
             $item.addClass('-animate')
             isMove = true;
@@ -76,7 +83,7 @@ function move(dir) {
         countIndex()
         updateTxt();
 
-        setTimeout(function() {
+        setTimeout(function () {
             setCarouselActive()
             updateContent();
         }, time_MOVE)
@@ -112,7 +119,7 @@ function updateTxt() {
     $itemTop.find('.m-carousel__txt').html(itemList[prevIndex][2])
     $itemBottom.find('.m-carousel__txt').html(itemList[nextIndex][2])
 
-    
+
 }
 
 function updateContent() {
@@ -123,44 +130,47 @@ function updateContent() {
     // $itemTop.find('img').attr('src', 'images/' + itemList[prevIndex][1])
     // $itemCenter.find('img').attr('src', 'images/' + itemList[currentIndex][1])
     // $itemBottom.find('img').attr('src', 'images/' + itemList[nextIndex][1])
-    
-    $hideTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hTopIndex][1]+')')
-    $hideBottom.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hBottomIndex][1]+')')
 
-    $itemTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[prevIndex][1]+')')
-    $itemCenter.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[currentIndex][1]+')')
-    $itemBottom.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[nextIndex][1]+')')
- 
+    $hideTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hTopIndex][1] + ')')
+    $hideBottom.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hBottomIndex][1] + ')')
+
+    $itemTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[prevIndex][1] + ')')
+    $itemCenter.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[currentIndex][1] + ')')
+    $itemBottom.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[nextIndex][1] + ')')
+
 }
-function setCarouselActive(){
-    if(currentIndex == 0 ){
+
+function setCarouselActive() {
+    if (currentIndex == 0) {
         $('#js-kv').addClass('-active');
         $itemCenter.find('.m-carousel__item').hide();
         isActive_KV = true;
-    }else{
+    } else {
         $itemCenter.find('.m-carousel__item').show();
         $('#js-kv').removeClass('-active');
         isActive_KV = false;
     }
 };
 
-$(function() {
-    
+$(function () {
+
     setCarouselOffset()
-    
+
     countIndex()
     updateTxt();
     updateContent();
     setCarouselActive();
-    setTimeout(function() {$item.addClass('-animate')}, time_MOVE)
+    setTimeout(function () {
+        $item.addClass('-animate')
+    }, time_MOVE)
 });
 
-$( window ).resize(function() {
+$(window).resize(function () {
     setCarouselOffset()
 });
 
-function setCarouselOffset(){
-    var windowHeight = $(window).outerHeight();
+function setCarouselOffset() {
+    var windowHeight = $('.o-carousel').outerHeight();
     var itemHeightPercent = 0.5;
     $hideTop.css('margin-top', (windowHeight * itemHeightPercent * itemLen - windowHeight) / 2 * -1 + 'px');
 };
