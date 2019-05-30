@@ -22,17 +22,21 @@ $(function () {
             var rotaX = moveX * str / -6;
             var rotaY = moveY * str / 6;
 
+            // front
             $js_KV.find('.-front').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 0.6 + 'vw)');
-
-            $js_KV.find('.m-ch-separation__img.-ch-c').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 0.9 + 'vw)');
-            $js_KV.find('.m-ch-separation__img.-ch-y').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.2 + 'vw)');
-            $js_KV.find('.m-ch-separation__img.-ch-m').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.5 + 'vw)');
+            
+            // back
+            $js_KV.find('.-ch-c').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 0.9 + 'vw)');
+            $js_KV.find('.-ch-y').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.2 + 'vw)');
+            $js_KV.find('.-ch-m').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.5 + 'vw)');
 
 
 
         } else {
-            $js_KV.find('.m-ch-separation__img').removeAttr('style');
+            // alll
+            $js_KV.find('.m-kv__layer').removeAttr('style');
 
+            // img
             var rotaX = moveX * str / -2;
             var rotaY = (moveY * str / 3 > 0) ? 0 : (moveY * str / 3 < -50) ? -50 : moveY * str / 3;
             $item_img.css('transform', 'rotateY(' + rotaY + 'deg) rotateX(' + rotaX + 'deg)');
@@ -42,6 +46,7 @@ $(function () {
     });
 
     $item_img.on('mouseleave', function (e) {
+        // img
         $item_img.css('transform', 'rotateY(0deg) rotateX(0deg)');
     });
 });

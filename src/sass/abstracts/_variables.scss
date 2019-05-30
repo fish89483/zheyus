@@ -14,6 +14,12 @@ $cursor: (
         opacity: ease-in
     )
 );
+$scrolldown: (
+    size: 30px,
+    squareRoot: 1.41421,
+    stroke: 2px,
+    color: black
+);
 
 $img: (
     noise: '../images/noise.gif',

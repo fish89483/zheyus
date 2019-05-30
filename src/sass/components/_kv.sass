@@ -1,41 +1,37 @@
 .m-kv
-    +size(100%)
+    +size(100%, 100vh)
     // background-color: #ffffff
-    +position(absolute,0,0)
+    +position(absolute,-50%,0)
     +center
     // overflow: hidden
     // display: none
-    transition: map-get($time, carousel-move) map-get($time, carousel-move) /4*3*-1
+    transition: map-get($time, carousel-move) map-get($time, carousel-move) /4 *3 *-1
     opacity: 0
     pointer-events: none
-
-    h1
-        font-size: 100px
-        font-weight: 800
+    
     &__noise
-        // position: absolute
         pointer-events: none
-        h1            
-            color: rgba(map-get($color,main),0.9)
-            background-clip: text
+        h1
             +noise('bg')
+            background-clip: text
+            color: rgba(map-get($color, main), 0.9)
     &__stroke
         +position(absolute)
         z-index: 2
         h1
             color: transparent
-            -webkit-text-stroke: 1px rgba(map-get($color,main),0.9)
+            -webkit-text-stroke: 1px rgba(map-get($color, main), 0.9)
     &__img
         width: 40%
         max-width: 450px
-        +position(absolute)
-        +center(transform)
+        +position(absolute,50%,'','',70%)
         +ratio(1,1)
-        left: 70%
-        // border-radius: 99em
-        // overflow: hidden
+        transform: translate(-50%,-50%)
         z-index: 1
         transform-style: preserve-3d
+        // +center(transform)
+        // border-radius: 99em
+        // overflow: hidden
     &__layer
         +size(100%)
         +position(absolute,0,'','',0)
@@ -44,12 +40,48 @@
             clip-path: circle(50%)
             +noise
             .a-ch-img
-                background-image: url(map-get($img,back))
+                background-image: url(map-get($img, back))
         &.-front
             clip-path: circle(50%)
             .a-ch-img
-                background-image: url(map-get($img,front))
+                background-image: url(map-get($img, front))
     .a-ch-img
         +bg('',center 20%,cover)
         transform: scale(1.1)
 
+    .a-scrolldown
+        +size(map-get($scrolldown, size))
+        position: absolute
+        bottom: 2%
+        span
+            &:first-child
+                +size(100%/map-get($scrolldown, squareRoot))
+                +position(absolute,50%,'','',50%)
+                transform: translate(-50%,-50%) rotate(135deg)
+                &::before,&::after
+                    content: ''
+                    +size(100%,map-get($scrolldown, stroke))
+                    +position(absolute)
+                    background-color: map-get($scrolldown, color)
+                    border-radius: 99em
+                &::after
+                    transform-origin: right
+                    transform: translate(map-get($scrolldown, stroke)/-2,map-get($scrolldown, stroke)/-2) rotate(-90deg)
+            &:last-child
+                +size(map-get($scrolldown, stroke),250%)
+                +position(absolute,'','',map-get($scrolldown, stroke),50%)
+                background-color: map-get($scrolldown, color)
+                transform: translateX(-50%)
+                animation: test 500ms infinite alternate
+        
+        &:hover  
+            span
+                &:first-child
+                &:last-child
+                    animation-play-state: paused
+      
+@keyframes test
+    0%
+        height: 250%
+    100%
+        height: 100%
