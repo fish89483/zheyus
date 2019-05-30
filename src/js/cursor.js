@@ -5,10 +5,11 @@ $(window).on('mousemove mousein', function (e) {
     });
 });
 
-$('.m-kv__img,.m-kv__stroke,a,img').on('mouseenter', function () {
+var $cursorTrans = $('.m-kv__img, .m-kv__stroke, .m-carousel__txt-item, a, img');
+$cursorTrans.on('mouseenter', function () {
     $('.a-cursor span').addClass('-active');
 });
 
-$('.m-kv__img,.m-kv__stroke,a,img').on("mouseleave", function () {
+$cursorTrans.on("mouseleave", function () {
     $('.a-cursor span').removeClass('-active');
 });

@@ -22,25 +22,24 @@ $(function () {
             var rotaX = moveX * str / -6;
             var rotaY = moveY * str / 6;
 
-            $js_KV.find('.-front').css('transform', 'translate(' + tranX + 'px,' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 0.6 + 'vw)')
+            $js_KV.find('.-front').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 0.6 + 'vw)');
 
-            $js_KV.find('.m-ch-separation__img.-back.-ch-c').css('transform', 'translate(' + tranX + 'px,' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 0.9 + 'vw)')
-            $js_KV.find('.m-ch-separation__img.-back.-ch-y').css('transform', 'translate(' + tranX + 'px,' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.2 + 'vw)')
-            $js_KV.find('.m-ch-separation__img.-back.-ch-m').css('transform', 'translate(' + tranX + 'px,' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.5 + 'vw)')
+            $js_KV.find('.m-ch-separation__img.-ch-c').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 0.9 + 'vw)');
+            $js_KV.find('.m-ch-separation__img.-ch-y').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.2 + 'vw)');
+            $js_KV.find('.m-ch-separation__img.-ch-m').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.5 + 'vw)');
 
 
 
         } else {
-            $js_KV.find('.m-ch-separation__img').removeAttr('style')
+            $js_KV.find('.m-ch-separation__img').removeAttr('style');
 
             var rotaX = moveX * str / -2;
             var rotaY = (moveY * str / 3 > 0) ? 0 : (moveY * str / 3 < -50) ? -50 : moveY * str / 3;
             $item_img.css('transform', 'rotateY(' + rotaY + 'deg) rotateX(' + rotaX + 'deg)');
 
-        }
+        };
 
     });
-
 
     $item_img.on('mouseleave', function (e) {
         $item_img.css('transform', 'rotateY(0deg) rotateX(0deg)');
