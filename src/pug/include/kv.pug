@@ -1,12 +1,9 @@
 -var text = 'ZHEYU XU'
 .m-kv#js-kv
-    .a-scrolldown
-        span
-        span
     .m-kv__stroke
         h1.t-kv-title=text
     .m-kv__img
-        each layer in ['c','m','y']
+        each layer in ['c', 'm', 'y']
             .m-kv__layer(class=`m-ch-separation__img -back -ch-${layer}`)
                 .a-ch-img
         .m-kv__layer.-front

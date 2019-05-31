@@ -12,8 +12,11 @@ html(lang="zh-TW")
         .a-cursor
             span
         .wrapper
+            .a-scrolldown
+                span
+                span
             .o-carousel
-                - var items = ['hide-top','top','center','bottom','hide-bottom']
+                - var items = ['hide-top', 'top', 'center', 'bottom', 'hide-bottom']
                 each item in items
                     .o-carousel__item(class=`-${item}`)
 

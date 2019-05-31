@@ -1,6 +1,5 @@
 $target: '.o-carousel__txt'
     
-  
 .o-carousel
     +size(100%)
     position: relative
@@ -36,7 +35,8 @@ $target: '.o-carousel__txt'
                 #{quote($target)}
                     top: -100%
                     transform: translate(0,0)
-
+        &.-next, &.-prev
+            will-change: transform
         // finall status
         &.-animate
             .o-carousel__content
@@ -124,5 +124,4 @@ $target: '.o-carousel__txt'
         +position(absolute)
         +noise('after')
         // +ratio(16,9)
-        will-change: transform
         transition: 100ms linear

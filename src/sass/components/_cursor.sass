@@ -11,10 +11,11 @@
         pointer-events: none
         transition: transform map-deep-get($cursor,fn,trans), opacity map-deep-get($cursor,fn,opacity)
         transition-duration: map-deep-get($cursor,time,out), map-deep-get($cursor,time,out)
-        will-change: transform
+        will-change: left, top
+        
     &.-active
         span
-            transform: scale(5)
+            transform: scale(4)
             opacity: 0.3
             transition-duration: map-deep-get($cursor, time, in), map-deep-get($cursor, time, in)
                 

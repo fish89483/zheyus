@@ -1,9 +1,9 @@
 var itemList = [
     ['', '', ''],
-    ['聖示宮祖號', 't2.jpg', '2Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
-    ['聖示祖宮號', 't3.jpg', '3Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
-    ['字好粗哦', 't4.jpg', '4Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
-    // ['title 5', 't5.jpg', '5Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.']
+    ['聖示宮祖號', 't2.jpg', '2Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
+    ['聖示祖宮號', 't3.jpg', '3Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
+    ['字好粗哦', 't4.jpg', '4Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
+    ['title 5', 't5.jpg', '5Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.']
 ];
 
 var $item = $('.o-carousel__item');
@@ -24,7 +24,7 @@ var currIndex = 0,
 
 
 $(window).on('mousewheel', function (e) {
-    var dir = (e.deltaY < 0) ? 'next' : 'prev';
+    var dir = (e.deltaY < 0) ? 1 : 0;
     moveItem(dir);
 })
 
@@ -37,19 +37,40 @@ $(window).on('touchmove', function (e) {
 });
 $(window).on('touchend', function () {
     var t = startY - endY;
-    var dir = (t > 100 || t < -100) ? 'next' : 'prev';
+    var dir = (t > 100 || t < -100) ? 1 : 0;
     moveItem(dir);
 });
 
 $(window).on('keydown', function (e) {
     var code = e.which;
-    var dir = (code == 40) ? 'next' : (code == 38) ? 'prev' : '';
-    if (dir != '') moveItem(dir);
+    var dir = (code == 40) ? 1 : (code == 38) ? 0 : -1;
+    if (dir >= 0) moveItem(dir);
+});
+
+$('.a-scrolldown').on('click', function () {
+    moveItem(1);
 });
 
 // function countTxtNum(num) {
 //     return ('0' + num).slice(-2)
 // }
+$(function () {
+
+    setCarouselOffset();
+
+    countIndex();
+    updateTxt();
+    updateContent();
+    setKvActive();
+    setTimeout(function () {
+        $item.addClass('-animate');
+    }, time_MOVE);
+
+});
+
+$(window).resize(function () {
+    setCarouselOffset();
+});
 
 function moveItem(dir) {
 
@@ -57,40 +78,41 @@ function moveItem(dir) {
         isMove = false;
 
         switch (dir) {
-            case 'next':
+            case 1:
                 currIndex += 1;
                 if (currIndex >= itemLen) currIndex = 0;
                 break;
-            case 'prev':
+            case 0:
                 currIndex -= 1;
                 if (currIndex < 0) currIndex = itemLen - 1;
                 break;
         };
 
+        dir = (dir == 1) ? 'next' : 'prev';
+
         $item.addClass('-stop -' + dir);
         $item.offset();
         $item.removeClass('-stop');
         $item.addClass('-start');
-
         $item.removeClass('-animate');
 
         setTimeout(function () {
             $item.removeClass('-start -' + dir);
             $item.addClass('-animate');
             isMove = true;
+
+            setKvActive();
+            updateContent();
+
         }, time_MOVE);
 
-
-        $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
 
         countIndex();
         updateTxt();
+        $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
 
-        setTimeout(function () {
-            setKvActive();
-            updateContent();
-        }, time_MOVE);
-
+        // setTimeout(function () {
+        // }, time_MOVE);
     };
 }
 
@@ -137,8 +159,8 @@ function updateContent() {
 
 function setKvActive() {
     if (currIndex == 0) {
-        $item.addClass('-kv-active');
         $itemCtr.find('.m-carousel__item').hide();
+        $item.addClass('-kv-active');
         isActive_KV = true;
     } else {
         $itemCtr.find('.m-carousel__item').show();
@@ -146,24 +168,6 @@ function setKvActive() {
         isActive_KV = false;
     };
 };
-
-$(function () {
-
-    setCarouselOffset();
-
-    countIndex();
-    updateTxt();
-    updateContent();
-    setKvActive();
-    setTimeout(function () {
-        $item.addClass('-animate');
-    }, time_MOVE);
-
-});
-
-$(window).resize(function () {
-    setCarouselOffset();
-});
 
 function setCarouselOffset() {
     var windowHeight = $('.o-carousel').outerHeight();

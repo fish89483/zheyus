@@ -16,7 +16,8 @@ $(function () {
         var $js_KV = $('#js-kv');
 
         if (isActive_KV) {
-
+            $js_KV.find('.m-kv__layer').addClass('-w-trans');
+            $item_img.removeClass('-w-trans');
             var tranX = moveY * str / -6;
             var tranY = moveX * str / 1;
             var rotaX = moveX * str / -6;
@@ -35,8 +36,11 @@ $(function () {
         } else {
             // alll
             $js_KV.find('.m-kv__layer').removeAttr('style');
+            $js_KV.find('.m-kv__layer').removeClass('-w-trans');
 
             // img
+            $item_img.addClass('-w-trans');
+
             var rotaX = moveX * str / -2;
             var rotaY = (moveY * str / 3 > 0) ? 0 : (moveY * str / 3 < -50) ? -50 : moveY * str / 3;
             $item_img.css('transform', 'rotateY(' + rotaY + 'deg) rotateX(' + rotaX + 'deg)');
