@@ -35,8 +35,8 @@ $target: '.o-carousel__txt'
                 #{quote($target)}
                     top: -100%
                     transform: translate(0,0)
-        &.-next, &.-prev
-            will-change: transform
+        
+            
         // finall status
         &.-animate
             .o-carousel__content
@@ -82,9 +82,11 @@ $target: '.o-carousel__txt'
     &__txt
         +size(50%,100%)
         +center(flex)
-        +position(absolute,50%,'','',0)
-        transform: translateY(-50%)
+        +position(absolute,0,'',0,0)
+        // +position(absolute,50%,'','',0)
+        // transform: translateY(-50%)
         z-index: 1
+        will-change: transform
 
     &__content
         +size(100%)
@@ -125,3 +127,4 @@ $target: '.o-carousel__txt'
         +noise('after')
         // +ratio(16,9)
         transition: 100ms linear
+        will-change: transform

@@ -31,6 +31,7 @@ $scrolldown: (
     squareRoot: 1.41421,
     stroke: 2px,
     color: black,
-    time: 800ms,
+    time: 700ms,
+    fn: cubic-bezier(0, 1.08, 1, 1.28),
     stretchPercent: 2.5
 );
