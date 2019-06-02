@@ -23,7 +23,7 @@
             -webkit-text-stroke: 1px rgba(map-get($color, main), 0.9)
     &__img
         width: 40%
-        max-width: 450px
+        max-width: 500px
         +position(absolute,50%,'','',70%)
         +ratio(1,1)
         transform: translate(-50%,-50%)
@@ -38,12 +38,16 @@
         transition: 100ms linear
         will-change: transform
         &.-back
-            clip-path: circle(50%)
+            // clip-path: circle(50%)
+            border-radius: 49% 51% 57% 43% / 57% 50% 50% 43%
+            overflow: hidden
             +noise
             .a-ch-img
                 background-image: url(map-get($img, back))
         &.-front
-            clip-path: circle(50%)
+            // clip-path: circle(50%)
+            border-radius: 49% 51% 57% 43% / 57% 50% 50% 43%
+            overflow: hidden
             .a-ch-img
                 background-image: url(map-get($img, front))
     .a-ch-img
