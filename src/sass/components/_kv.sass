@@ -1,13 +1,11 @@
 .m-kv
     +size(100%, 100vh)
-    // background-color: #ffffff
     +position(absolute,-50%,0)
     +center
     // overflow: hidden
-    // display: none
-    transition: map-get($time, carousel-move) map-get($time, carousel-move) /4 *3 *-1
+    transition: map-deep-get($carousel,time,move) map-deep-get($carousel,time,move) /4 *3 *-1
     opacity: 0
-    pointer-events: none
+    // pointer-events: none
     
     &__noise
         pointer-events: none
@@ -23,35 +21,29 @@
             -webkit-text-stroke: 1px rgba(map-get($color, main), 0.9)
     &__img
         width: 40%
-        max-width: 500px
+        // max-width: 500px
         +position(absolute,50%,'','',70%)
         +ratio(1,1)
         transform: translate(-50%,-50%)
         z-index: 1
         transform-style: preserve-3d
-        // +center(transform)
-        // border-radius: 99em
-        // overflow: hidden
     &__layer
         +size(100%)
         +position(absolute,0,'','',0)
-        transition: 100ms linear
+        +bg('',center,cover)
+        overflow: hidden
+        // clip-path: circle(50%)
+        transition: map-get($time, smooth) linear
         will-change: transform
-        &.-back
-            // clip-path: circle(50%)
-            border-radius: 49% 51% 57% 43% / 57% 50% 50% 43%
-            overflow: hidden
-            +noise
-            .a-ch-img
-                background-image: url(map-get($img, back))
-        &.-front
-            // clip-path: circle(50%)
-            border-radius: 49% 51% 57% 43% / 57% 50% 50% 43%
-            overflow: hidden
-            .a-ch-img
-                background-image: url(map-get($img, front))
-    .a-ch-img
-        +bg('',center 20%,cover)
-        transform: scale(1.1)
+        animation: border-wave map-deep-get($kv,time,border-wave) infinite
+        animation-timing-function: map-deep-get($kv,fn,border-wave)
+        @for $i from 1 through 4
+            &:nth-child(#{$i})
+                animation-delay: (map-deep-get($kv,time,border-wave) +1) *$i /-4
 
-    
+        &.-back
+            +noise
+            background-image: url(map-deep-get($kv,img,back))
+        &.-front
+            background-image: url(map-deep-get($kv,img,front))
+            background-position: center 20%

@@ -10,7 +10,7 @@ $(window).on('mouseleave', function () {
     $('.a-cursor span').hide();
 });
 
-var $cursorTrans = $('.m-carousel__item, .m-kv__stroke, .a-scrolldown, .t-title, .t-txt, a, img');
+var $cursorTrans = $('.m-carousel__item, .m-kv__stroke,.m-kv__layer, .a-scrolldown, .t-title, .t-txt, a, img');
 $cursorTrans.on('mouseenter', function () {
     $('.a-cursor').addClass('-active');
 });

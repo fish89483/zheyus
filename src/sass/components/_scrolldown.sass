@@ -6,7 +6,7 @@
     transition: map-get($scrolldown, time)
     span
         &:nth-child(1)
-            +size(100%/map-get($scrolldown, squareRoot))
+            +size(100%/map-get($scrolldown, root-of-2))
             +position(absolute,50%,'','',50%)
             transform: translate(-50%,-50%) rotate(135deg)
             &::before,&::after
@@ -40,8 +40,3 @@
   
 
 
-@keyframes scrolldown
-    0%,100%
-        height: 100% * map-get($scrolldown, stretchPercent)
-    70%
-        height: 100%

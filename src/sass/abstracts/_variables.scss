@@ -1,17 +1,35 @@
 $color: (
     main: #11acf0,
-    test: red
+    test: red,
+    9: #999999,
 );
 
 $img: (
     noise: '../images/noise.gif',
-    back: '../images/kv-back.jpg',
-    front: '../images/kv-front.png'
 );
 
 $time: (
-    carousel-move: 500ms,
-    carousel-sec-animate: 250ms
+    smooth: 100ms,
+);
+
+$carousel: (
+    time: (
+        move: 500ms,
+        sec-move: 250ms,
+    )
+);
+
+$kv: (
+    img: (
+        back: '../images/kv-back-t.jpg',
+        front: '../images/kv-front-t.png'
+    ),
+    time: (
+        border-wave: 10s
+    ),
+    fn: (
+        border-wave: cubic-bezier(0.21, 0.01, 0.76, 1)
+    )
 );
 
 $cursor: (
@@ -28,10 +46,10 @@ $cursor: (
 
 $scrolldown: (
     size: 30px,
-    squareRoot: 1.41421,
+    root-of-2: 1.41421,
     stroke: 2px,
-    color: black,
+    color: map-get($color, 9),
     time: 700ms,
     fn: cubic-bezier(0, 1.08, 1, 1.28),
-    stretchPercent: 2.5
+    stretch-ratio: 2.5
 );
