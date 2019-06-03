@@ -3,8 +3,10 @@
     .m-kv__stroke
         h1.t-kv-title=text
     .m-kv__img
-        each layer in ['c', 'm', 'y']
-            .m-kv__layer.-back(class=`m-ch-split__img -ch-${layer}`)
-        .m-kv__layer.-front
+        each layer in ['c', 'm', 'y','f']
+            if(layer !='f')
+                .m-kv__layer.-back(class=`m-ch-split__img -ch-${layer}`)
+            else
+                .m-kv__layer.-front
     .m-kv__noise
         h1.t-kv-title=text

@@ -5,8 +5,6 @@
     // overflow: hidden
     transition: map-deep-get($carousel,time,move) map-deep-get($carousel,time,move) /4 *3 *-1
     opacity: 0
-    // pointer-events: none
-    
     &__noise
         pointer-events: none
         h1
@@ -30,7 +28,6 @@
     &__layer
         +size(100%)
         +position(absolute,0,'','',0)
-        +bg('',center,cover)
         overflow: hidden
         // clip-path: circle(50%)
         transition: map-get($time, smooth) linear
@@ -40,10 +37,9 @@
         @for $i from 1 through 4
             &:nth-child(#{$i})
                 animation-delay: (map-deep-get($kv,time,border-wave) +1) *$i /-4
-
         &.-back
             +noise
             background-image: url(map-deep-get($kv,img,back))
         &.-front
+            +bg('',center 20%,cover)
             background-image: url(map-deep-get($kv,img,front))
-            background-position: center 20%
