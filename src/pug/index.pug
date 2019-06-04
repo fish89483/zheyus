@@ -7,7 +7,6 @@ html(lang="zh-TW")
         title Document
         link(rel="stylesheet", href="css/main.css")
 
-     
     body
         .a-cursor
             span
@@ -18,20 +17,35 @@ html(lang="zh-TW")
             .o-carousel
                 - var items = ['hide-top', 'top', 'center', 'bottom', 'hide-bottom']
                 each item in items
-                    .o-carousel__item(class=`-${item}`)
+                    if item == 'center'
+                        .o-carousel__item(class=`-${item}`)
+                            .o-carousel__txt
+                                .m-carousel__txt-item
+                                    //- title
+                                    h2.m-carousel__title.t-title
+                                    //- content
+                                    .m-carousel__txt-content.-txt-content-2
+                                        p.t-txt 2Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.
+                                    .m-carousel__txt-content.-txt-content-3
+                                        p.t-txt 3Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.
+                                    .m-carousel__txt-content.-txt-content-4
+                                        p.t-txt 4Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reiciendis delectus quasi atque incidunt nobis repudiandae natus assumenda eius ut itaque voluptates id optio voluptas impedit mollitia, architecto nulla? Suscipit.
+                            .o-carousel__content
+                                //- item
+                                .m-carousel__item
 
-                        .o-carousel__txt
-                            //- title
-                            .m-carousel__txt-item
-                                h2.m-carousel__title.t-title
-                                p.m-carousel__txt.t-txt
-
-                        .o-carousel__content
-                            //- item
-                            .m-carousel__item
-                            //- kv
-                            if item == 'center'
+                                //- center:
                                 include include/kv.pug
+                                
+                    else
+                        .o-carousel__item(class=`-${item}`)
+                            .o-carousel__txt
+                                //- title
+                                .m-carousel__txt-item
+                                    h2.m-carousel__title.t-title
+                            .o-carousel__content
+                                //- item
+                                .m-carousel__item
 
                 .o-carousel__count
 

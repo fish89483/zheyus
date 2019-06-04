@@ -20,7 +20,7 @@ $target: '.o-carousel__txt'
         // run animate
         &.-start
             #{quote($target)}
-                transition: map-deep-get($carousel,time,move) 
+                transition: map-deep-get($carousel, time, move)
 
         // original status
         &.-stop
@@ -43,38 +43,45 @@ $target: '.o-carousel__txt'
                 +center(transform)
                 transform: translate(-50%,-50%) rotateX(0deg)
                 opacity: 1
-                transition: map-deep-get($carousel,time,sec-move)
+                transition: map-deep-get($carousel,time,sec-move) ease
 
             &.-center
                 .m-carousel__title
                     // -webkit-text-stroke: 1px #000
                     color: rgba(0,0,0,1)
-                    opacity: 1
+                    // opacity: 1
                     transition: map-deep-get($carousel,time,sec-move) ease
-                    
-                .m-carousel__txt
-                    // min-height: 150px
-                    // height: auto
-                    height: 200px
-                    margin-top: 30px
-                    transform: translateY(0px)
+                .m-carousel__txt-content.-active
                     opacity: 1
-                    transition: map-deep-get($carousel,time,sec-move) ease
+                    // height: 200px
+                    // margin-top: 30px
+                    // transition: map-deep-get($carousel,time,sec-move) linear
+                // .m-carousel__txt
+                //     // min-height: 150px
+                //     // height: auto
+                //     height: 200px
+                //     margin-top: 30px
+                //     transform: translateY(0px)
+                //     opacity: 1
+                //     transition: map-deep-get($carousel,time,sec-move) ease
 
-            &.-top
-                .m-carousel__title
-                    transform: translateY(100%)
-
-            &.-bottom
-                .m-carousel__title
-                    transform: translateY(-100%)
+            &:not(.-kv-active)
+                &.-top
+                    .m-carousel__title
+                        transform: translateY(100%)
+                &.-bottom
+                    .m-carousel__title
+                        transform: translateY(-100%)
 
         // when kv is shown
-        &.-kv-active 
+        &.-kv-active
             &.-top, &.-bottom
                 .m-carousel__txt-item
                     opacity: 0
             &.-center
+                .m-carousel__txt-content
+                    opacity: 0
+                    // height: 0
                 .m-kv
                     opacity: 1
                     pointer-events: auto
@@ -85,8 +92,6 @@ $target: '.o-carousel__txt'
         +size(50%,100%)
         +center(flex)
         +position(absolute,0,'',0,0)
-        // +position(absolute,50%,'','',0)
-        // transform: translateY(-50%)
         z-index: 1
         will-change: transform
 
@@ -107,19 +112,29 @@ $target: '.o-carousel__txt'
     &__txt-item
         width: 90%
         z-index: 1
+        position: relative
+    &__txt-content
+        opacity: 0
+        // height: 0
+        // overflow: hidden
+        position: absolute
+        padding-top: 30px
+        transition: map-deep-get($carousel,time,sec-move) height ease
+        &.-txt-content-2
+        
     &__title
         +size(100%,80px)
         display: block
         // -webkit-text-stroke: 1px rgba(0,0,0,.2)
         color: rgba(0,0,0,0.1)
         // opacity: 0
-        transition: map-deep-get($carousel,time,sec-move) ease transform
+        transition: map-deep-get($carousel,time,sec-move) transform ease
 
-    &__txt
-        +size(100%,0px)
-        display: block
-        opacity: 0
-        transform: translateY(20%)
+    // &__txt
+    //     +size(100%,0px)
+    //     display: block
+    //     opacity: 0
+    //     transform: translateY(20%)
         // transition: 50ms
 
     &__item

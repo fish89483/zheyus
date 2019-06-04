@@ -34,9 +34,9 @@
         will-change: transform
         animation: border-wave map-deep-get($kv,time,border-wave) infinite
         animation-timing-function: map-deep-get($kv,fn,border-wave)
-        @for $i from 1 through 4
-            &:nth-child(#{$i})
-                animation-delay: (map-deep-get($kv,time,border-wave) +1) *$i /-4
+        // @for $i from 1 through 4
+        //     &:nth-child(#{$i})
+        //         animation-delay: (map-deep-get($kv,time,border-wave) +1) *$i /-4
         &.-back
             +noise
             background-image: url(map-deep-get($kv,img,back))

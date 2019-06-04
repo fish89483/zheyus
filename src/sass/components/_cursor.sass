@@ -3,19 +3,21 @@
     +position(absolute,0,'','',0)
     overflow: hidden
     span
-        +size(10px)
+        +size(16px)
         +position(absolute,0,'','',0)
         background-color: map-get($cursor, color)
-        border-radius: 99em
+        // border-radius: 99em
+        border-radius: 10% 90% 50% 50% / 10% 50% 50% 90% 
         z-index: 100
         pointer-events: none
-        transition: transform map-deep-get($cursor,fn,trans), opacity map-deep-get($cursor,fn,opacity)
-        transition-duration: map-deep-get($cursor,time,out), map-deep-get($cursor,time,out)
+        transition: transform map-deep-get($cursor, fn, trans), opacity map-deep-get($cursor, fn, opacity)
+        transition-duration: map-deep-get($cursor, time, out), map-deep-get($cursor, time, out)
         will-change: left, top
         
     &.-active
         span
             transform: scale(4)
+            border-radius: 99em
             opacity: 0.3
             transition-duration: map-deep-get($cursor, time, in), map-deep-get($cursor, time, in)
                 

@@ -1,9 +1,8 @@
 var itemList = [
     ['', '', ''],
-    ['聖示宮祖號', 't2.jpg', '2Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
-    ['聖示祖宮號', 't3.jpg', '3Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
-    ['字好粗哦', 't4.jpg', '4Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.'],
-    ['title 5', 't5.jpg', '5Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam minus quae odio? Voluptates corrupti dolorum recusandae, non facilis molestiae ipsa, laborum expedita praesentium tempore soluta quam iste neque nam.']
+    ['盛事公主號', 't2.jpg'],
+    ['太陽公主號', 't3.jpg'],
+    ['傳奇號', 't4.jpg']
 ];
 
 var $item = $('.o-carousel__item');
@@ -14,7 +13,7 @@ var $hideTop = $('.o-carousel__item.-hide-top');
 var $hideBtm = $('.o-carousel__item.-hide-bottom');
 var $itemCountTxt = $('.o-carousel__count');
 
-var itemNum = 5; //hideTop, hideBtm, top, center, bottom
+var l_ItemLen = 5; //hideTop, hideBtm, top, center, bottom
 var itemLen = itemList.length;
 var time_MOVE = 500;
 var isMove = true;
@@ -56,12 +55,12 @@ $('.a-scrolldown').on('click', function () {
 // }
 $(function () {
 
-    setCarouselOffset();
-
+    setOffset();
     countIndex();
     updateTxt();
     updateContent();
     setKvActive();
+
     setTimeout(function () {
         $item.addClass('-animate');
     }, time_MOVE);
@@ -69,7 +68,7 @@ $(function () {
 });
 
 $(window).resize(function () {
-    setCarouselOffset();
+    setOffset();
 });
 
 function moveItem(dir) {
@@ -100,19 +99,16 @@ function moveItem(dir) {
             $item.removeClass('-start -' + dir);
             $item.addClass('-animate');
             isMove = true;
-
             setKvActive();
             updateContent();
 
         }, time_MOVE);
 
-
         countIndex();
         updateTxt();
+        setTxtCtAnimate();
         $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
 
-        // setTimeout(function () {
-        // }, time_MOVE);
     };
 }
 
@@ -139,12 +135,11 @@ function updateTxt() {
     $itemTop.find('.m-carousel__title').html(itemList[prevIndex][0]);
     $itemBtm.find('.m-carousel__title').html(itemList[nextIndex][0]);
 
-    $hideTop.find('.m-carousel__txt').html(itemList[hTopIndex][2]);
-    $hideBtm.find('.m-carousel__txt').html(itemList[hBtmIndex][2]);
-    $itemCtr.find('.m-carousel__txt').html(itemList[currIndex][2]);
-    $itemTop.find('.m-carousel__txt').html(itemList[prevIndex][2]);
-    $itemBtm.find('.m-carousel__txt').html(itemList[nextIndex][2]);
-
+    // $hideTop.find('.m-carousel__txt').html(itemList[hTopIndex][2]);
+    // $hideBtm.find('.m-carousel__txt').html(itemList[hBtmIndex][2]);
+    // $itemCtr.find('.m-carousel__txt').html(itemList[currIndex][2]);
+    // $itemTop.find('.m-carousel__txt').html(itemList[prevIndex][2]);
+    // $itemBtm.find('.m-carousel__txt').html(itemList[nextIndex][2]);
 };
 
 function updateContent() {
@@ -155,6 +150,28 @@ function updateContent() {
     $itemCtr.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[currIndex][1] + ')');
     $itemBtm.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[nextIndex][1] + ')');
 
+};
+
+function setTxtCtAnimate() {
+
+    var $txtCtActive = $('.m-carousel__txt-content.-txt-content-' + (currIndex + 1));
+    var $txtCtActiveH = $txtCtActive.outerHeight();
+
+    if (currIndex != 0) {
+
+        $txtCtActive.addClass('-active').siblings().removeClass('-active');
+        $txtCtActive.css({
+            'height': '0px',
+            'position': 'relative'
+        }).siblings().removeAttr('style');
+
+        setTimeout(function () {
+            $txtCtActive.css('height', $txtCtActiveH + 'px');
+        }, time_MOVE);
+
+    } else {
+        $('.m-carousel__txt-content').removeClass('-active').removeAttr('style');
+    };
 };
 
 function setKvActive() {
@@ -169,8 +186,8 @@ function setKvActive() {
     };
 };
 
-function setCarouselOffset() {
+function setOffset() {
     var windowHeight = $('.o-carousel').outerHeight();
     var itemHeightPercent = 0.5; // 50%
-    $hideTop.css('margin-top', (windowHeight * itemHeightPercent * itemNum - windowHeight) / 2 * -1 + 'px');
+    $hideTop.css('margin-top', (windowHeight * itemHeightPercent * l_ItemLen - windowHeight) / 2 * -1 + 'px');
 };
