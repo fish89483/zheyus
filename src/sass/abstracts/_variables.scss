@@ -1,7 +1,10 @@
 $color: (
-    main: #11acf0,
+    // main: #11acf0,
     test: red,
     9: #999999,
+    main: #d34444,
+    sec: #11acf0,
+    bg: #fffceb
 );
 
 $img: (
@@ -21,8 +24,8 @@ $carousel: (
 
 $kv: (
     img: (
-        back: '../images/kv-back-t.jpg',
-        front: '../images/kv-front-t.png'
+        back: '../images/kv-back.jpg',
+        front: '../images/kv-front.png'
     ),
     time: (
         border-wave: 10s

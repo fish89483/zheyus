@@ -5,24 +5,31 @@
     // overflow: hidden
     transition: map-deep-get($carousel,time,move) map-deep-get($carousel,time,move) /4 *3 *-1
     opacity: 0
+    .container
+        position: relative
     &__noise
+        +position(absolute,50%,'','',5%)
+        transform: translate(0,-50%)
         pointer-events: none
         h1
-            +noise('bg')
+            // +noise('bg')
             background-clip: text
             color: rgba(map-get($color, main), 0.9)
+            transform: translate(2px,2px)
     &__stroke
-        +position(absolute)
+        +position(absolute,50%,'','',5%)
+        transform: translate(0,-50%)
+        // +position(absolute)
         z-index: 2
         h1
             color: transparent
             -webkit-text-stroke: 1px rgba(map-get($color, main), 0.9)
     &__img
-        width: 40%
+        width: 50%
         // max-width: 500px
-        +position(absolute,50%,'','',70%)
+        +position(absolute,50%,5%)
         +ratio(1,1)
-        transform: translate(-50%,-50%)
+        transform: translate(0,-50%)
         z-index: 1
         transform-style: preserve-3d
     &__layer
@@ -38,7 +45,7 @@
         //     &:nth-child(#{$i})
         //         animation-delay: (map-deep-get($kv,time,border-wave) +1) *$i /-4
         &.-back
-            +noise
+            // +noise
             background-image: url(map-deep-get($kv,img,back))
         &.-front
             +bg('',center 20%,cover)

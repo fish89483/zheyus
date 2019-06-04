@@ -1,12 +1,25 @@
--var text = '郵　輪　旅　遊'
+-var text = 'ZHE YU XU'
 .m-kv#js-kv
-    .m-kv__stroke
-        h1.t-kv-title=text
-    .m-kv__img
-        each layer in ['c', 'm', 'y','f']
-            if(layer !='f')
-                .m-kv__layer.-back(class=`m-ch-split__img -ch-${layer}`)
-            else
-                .m-kv__layer.-front
-    .m-kv__noise
-        h1.t-kv-title=text
+    .container
+        .m-kv__stroke
+            h1.t-kv-title=text
+            //- h1.t-kv-title ON
+                br 
+                | THE
+                br
+                | ROAD.
+        .m-kv__img
+        
+            //- ch-split
+            each layer in ['c', 'm', 'y','f']
+                if(layer !='f')
+                    .m-kv__layer.-back(class=`m-ch-split__img -ch-${layer}`)
+                else
+                    .m-kv__layer.-front
+        .m-kv__noise
+            h1.t-kv-title=text
+            //- h1.t-kv-title ON
+                br 
+                | THE
+                br
+                | ROAD.

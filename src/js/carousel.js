@@ -1,3 +1,6 @@
+var isTransAnimate = true;
+var isActive_KV = true;
+
 var itemList = [
     ['', '', ''],
     ['盛事公主號', 't2.jpg'],
@@ -17,10 +20,12 @@ var l_ItemLen = 5; //hideTop, hideBtm, top, center, bottom
 var itemLen = itemList.length;
 var time_MOVE = 500;
 var isMove = true;
-var isActive_KV = true;
+
 var currIndex = 0,
     prevIndex, nextIndex, hTopIndex, hBtmIndex;
 
+var wHeight = $(window).outerHeight();
+var wWidth = $(window).outerWidth();
 
 $(window).on('mousewheel', function (e) {
     var dir = (e.deltaY < 0) ? 1 : 0;
@@ -68,6 +73,14 @@ $(function () {
 });
 
 $(window).resize(function () {
+    wHeight = $(window).outerHeight();
+    wWidth = $(window).outerHeight();
+    if (wWidth >= 768) {
+        isTransAnimate = true
+    }else if(wWidth < 768){
+        isTransAnimate = false
+        
+    }
     setOffset();
 });
 
@@ -187,7 +200,6 @@ function setKvActive() {
 };
 
 function setOffset() {
-    var windowHeight = $('.o-carousel').outerHeight();
     var itemHeightPercent = 0.5; // 50%
-    $hideTop.css('margin-top', (windowHeight * itemHeightPercent * l_ItemLen - windowHeight) / 2 * -1 + 'px');
+    $hideTop.css('margin-top', (wHeight * itemHeightPercent * l_ItemLen - wHeight) / 2 * -1 + 'px');
 };

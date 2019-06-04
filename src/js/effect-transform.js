@@ -15,15 +15,18 @@ $(function () {
         var moveY = StrY * alignX;
         var $js_KV = $('#js-kv');
 
+
+
         if (isActive_KV) {
             var tranX = moveY * str / -6;
             var tranY = moveX * str / 1;
             var rotaX = moveX * str / -6;
             var rotaY = moveY * str / 6;
+            // rotaY = (rotaY > 10 || rotaY < 2.5) ? 0 : rotaY;
 
             // front
             $js_KV.find('.-front').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 0.6 + 'vw)');
-            
+
             // back
             $js_KV.find('.-ch-c').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 0.9 + 'vw)');
             $js_KV.find('.-ch-y').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.2 + 'vw)');
@@ -35,7 +38,6 @@ $(function () {
             // alll
 
             // img
-            $item_img.addClass('-w-trans');
 
             var rotaX = moveX * str / -2;
             var rotaY = (moveY * str / 3 > 0) ? 0 : (moveY * str / 3 < -50) ? -50 : moveY * str / 3;
