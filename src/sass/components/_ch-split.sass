@@ -3,6 +3,8 @@
 .m-ch-split__img
     +position(absolute,0,0)
     +bg('',center,cover)
+
+    // ------- CMYK-type --------------
     background-blend-mode: screen
     mix-blend-mode: darken
     &.-ch-c
@@ -11,3 +13,13 @@
         background-color: #f0f
     &.-ch-y
         background-color: #ff0
+
+    // ------- RGB-type ---------------
+    // background-blend-mode: darken
+    // mix-blend-mode: screen
+    // &.-ch-c
+    //     background-color: #f00
+    // &.-ch-m
+    //     background-color: #0f0
+    // &.-ch-y
+    //     background-color: #00f
