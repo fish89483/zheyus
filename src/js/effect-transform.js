@@ -16,8 +16,9 @@ $(function () {
         var $js_KV = $('#js-kv');
 
 
+        (isActive_KV) ? effectKV() : effectIMG();
 
-        if (isActive_KV) {
+        function effectKV() {
             var tranX = moveY * str / -6;
             var tranY = moveX * str / 1;
             var rotaX = moveX * str / -6;
@@ -32,19 +33,14 @@ $(function () {
             $js_KV.find('.-ch-y').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.2 + 'vw)');
             $js_KV.find('.-ch-m').css('transform', 'translate(' + tranX + 'px, ' + tranY + 'px) rotateX(' + rotaX + 'deg) rotateY(' + rotaY + 'deg) translateZ(' + str / 1.5 + 'vw)');
 
+        }
 
-
-        } else {
-            // alll
-
-            // img
-
+        function effectIMG() {
             var rotaX = moveX * str / -2;
-            var rotaY = (moveY * str / 3 > 0) ? 0 : (moveY * str / 3 < -50) ? -50 : moveY * str / 3;
+            var rotaY = (moveY * str / 3 > -10) ? -10 : (moveY * str / 3 < -50) ? -50 : moveY * str / 3;
             $item_img.css('transform', 'rotateY(' + rotaY + 'deg) rotateX(' + rotaX + 'deg)');
 
-        };
-
+        }
     });
 
     $item_img.on('mouseleave', function (e) {

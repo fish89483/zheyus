@@ -142,11 +142,11 @@ function countIndex() {
 
 function updateTxt() {
 
-    $hideTop.find('.m-carousel__title').html(itemList[hTopIndex][0]);
-    $hideBtm.find('.m-carousel__title').html(itemList[hBtmIndex][0]);
-    $itemCtr.find('.m-carousel__title').html(itemList[currIndex][0]);
-    $itemTop.find('.m-carousel__title').html(itemList[prevIndex][0]);
-    $itemBtm.find('.m-carousel__title').html(itemList[nextIndex][0]);
+    $hideTop.find('.m-carousel__title h2').html(itemList[hTopIndex][0]);
+    $hideBtm.find('.m-carousel__title h2').html(itemList[hBtmIndex][0]);
+    $itemCtr.find('.m-carousel__title h2').html(itemList[currIndex][0]);
+    $itemTop.find('.m-carousel__title h2').html(itemList[prevIndex][0]);
+    $itemBtm.find('.m-carousel__title h2').html(itemList[nextIndex][0]);
 
     // $hideTop.find('.m-carousel__txt').html(itemList[hTopIndex][2]);
     // $hideBtm.find('.m-carousel__txt').html(itemList[hBtmIndex][2]);

@@ -43,14 +43,12 @@ $target: '.o-carousel__txt'
                 +center(transform)
                 transform: translate(-50%,-50%) rotateX(0deg)
                 opacity: 1
-                transition: map-deep-get($carousel,time,sec-move) ease
+                transition: map-deep-get($carousel, time, sec-move) ease
 
             &.-center
                 .m-carousel__title
-                    // -webkit-text-stroke: 1px #000
-                    color: map-get($color, sec)
-                    // opacity: 1
-                    transition: map-deep-get($carousel,time,sec-move) ease
+                    opacity: 1
+                    transition: map-deep-get($carousel, time, sec-move) ease
                 .m-carousel__txt-content.-active
                     opacity: 1
                     // height: 200px
@@ -79,13 +77,15 @@ $target: '.o-carousel__txt'
                 .m-carousel__txt-item
                     opacity: 0
             &.-center
+                .o-carousel__txt
+                    pointer-events: none
                 .m-carousel__txt-content
                     opacity: 0
                     // height: 0
                 .m-kv
                     opacity: 1
                     pointer-events: auto
-                    transition: map-deep-get($carousel,time,move)
+                    transition: map-deep-get($carousel, time, move)
 
 
     &__txt
@@ -103,7 +103,7 @@ $target: '.o-carousel__txt'
         transform: translate(-40%,-50%) rotateX(95deg)
         opacity: 0
         perspective: 2000px
-        transition: map-deep-get($carousel,time,sec-move)
+        transition: map-deep-get($carousel, time, sec-move)
 
     &__count
         +position(absolute,'',0,0)
@@ -119,16 +119,18 @@ $target: '.o-carousel__txt'
         // overflow: hidden
         position: absolute
         padding-top: 30px
-        transition: map-deep-get($carousel,time,sec-move) height ease
+        transition: map-deep-get($carousel, time, sec-move) height ease
         &.-txt-content-2
         
     &__title
         +size(100%,80px)
         display: block
-        // -webkit-text-stroke: 1px rgba(0,0,0,.2)
-        color: rgba(map-get($color, sec),0.1)
-        // opacity: 0
-        transition: map-deep-get($carousel,time,sec-move) transform ease
+        color: map-get($color, sec)
+        opacity: 0.2
+        transition: map-deep-get($carousel, time, sec-move) transform ease
+        *
+            -webkit-text-stroke-color: map-get($color, sec)
+        
 
     // &__txt
     //     +size(100%,0px)

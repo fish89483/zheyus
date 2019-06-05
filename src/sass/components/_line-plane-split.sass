@@ -1,0 +1,18 @@
+// line-plane-split
+
+.a-split
+    &__plane, &__line
+        position: absolute
+    &__plane
+        >*
+            transform: translate(2px,2px)
+            transition: map-get($time, transition) ease
+        &:hover
+            >*
+                transform: translate(0,0)
+    &__line
+        z-index: 2
+        pointer-events: none
+        >*
+            color: transparent
+            -webkit-text-stroke: 1px #000
