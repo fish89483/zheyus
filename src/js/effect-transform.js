@@ -16,7 +16,7 @@ $(function () {
         var $js_KV = $('#js-kv');
 
 
-        (isActive_KV) ? effectKV() : effectIMG();
+        (isActive_KV) ? effectKV(): effectIMG();
 
         function effectKV() {
             var tranX = moveY * str / -6;
