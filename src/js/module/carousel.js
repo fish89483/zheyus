@@ -41,8 +41,11 @@ $(window).on('touchmove', function (e) {
 });
 $(window).on('touchend', function () {
     var t = startY - endY;
-    var dir = (t > 100 || t < -100) ? 1 : 0;
-    moveItem(dir);
+    if (t > 100 || t < -100) {
+        var dir = (t > 0) ? 1 : 0;
+        moveItem(dir);
+    }
+    
 });
 
 $(window).on('keydown', function (e) {
@@ -77,9 +80,9 @@ $(window).resize(function () {
     wWidth = $(window).outerHeight();
     if (wWidth >= 768) {
         isTransAnimate = true
-    }else if(wWidth < 768){
+    } else if (wWidth < 768) {
         isTransAnimate = false
-        
+
     }
     setOffset();
 });

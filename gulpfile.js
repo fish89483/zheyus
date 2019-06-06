@@ -7,7 +7,6 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
     connect = require('gulp-connect');
-// gulpLivereload = require('gulp-livereload')
 var path = {
     src: 'src/**/*',
     srcHTML: 'src/**/*.html',
@@ -31,7 +30,8 @@ var concatPath = {
     js: [
         'node_modules/**/jquery.min.js',
         'node_modules/**/jquery.mousewheel.js',
-        'src/js/min/*.min.js'
+        'src/js/app.js',
+        'src/js/module/*.js'
     ]
 
 }
@@ -67,8 +67,9 @@ gulp.task('sass', function() {
 });
 
 // concat
-gulp.task('concat-js', function() {
+gulp.task('js', function() {
     return gulp.src(concatPath.js)
+        .pipe(uglify())
         .pipe(concat('main.js'))
         // .pipe(hash()) // Add hashes to the files' names
         // .pipe(gulp.dest('dist/js')) // Write the renamed files
@@ -78,38 +79,8 @@ gulp.task('concat-js', function() {
     // .pipe(gulpLivereload())
 })
 
-// gulp.task('concat-css', function () {
-//     return gulp.src(concatPath.css)
-//         .pipe(concat('main.css'))
-//         .pipe(hash()) // Add hashes to the files' names
-//         .pipe(gulp.dest('dist/css')) // Write the renamed files
-//         .pipe(hash.manifest('assets.json'))
-//         .pipe(gulp.dest(path.distCSS))
-// })
 
-gulp.task('uglify', function() {
-    return gulp.src(path.srcJS)
-        .pipe(uglify())
-        .pipe(rename({
-            dirname: '',
-            suffix: ".min"
-        }))
-        .pipe(gulp.dest('src/js/min/'));
-})
-
-
-// gulp.task('scripts', function () {
-//     return gulp.src(concatPath.js)
-//         .pipe(rename({
-//             dirname: ''
-//         }))
-//         .pipe(gulp.dest(path.distJS));
-// })
-
-// gulp.task('styles', gulp.series('sass', 'concat-css'))
-
-gulp.task('scripts', gulp.series('uglify', 'concat-js'))
-gulp.task('styles', gulp.series('sass'))
+gulp.task('styles', gulp.series('sass'));
 
 gulp.task('img', function() {
     return gulp.src('src/images/*')
@@ -128,23 +99,15 @@ gulp.task('watch', function() {
     gulp.parallel('connect')
     gulp.watch('src/images/*', gulp.series('img'))
     gulp.watch(path.srcSass, gulp.series('styles'));
-    gulp.watch(path.srcJS, gulp.series('scripts'));
+    gulp.watch(path.srcJS, gulp.series('js'));
     gulp.watch([path.srcPug,'src/pug/**/*.pug'], gulp.series('html'));
 });
 
 gulp.task('connect', gulp.parallel('server', 'watch'))
-    //start
-gulp.task('start', gulp.series('styles', 'scripts', 'html', 'img', 'connect'));
-// gulp.task('start', gulp.series('styles', 'scripts', 'inject', 'html'))
 
-gulp.task('build', gulp.series('styles', 'scripts', 'html', 'img'));
-// gulp.task('hash', function () {
-//     return gulp.src('./dist/js/**/*.js')
-//         .pipe(hash()) // Add hashes to the files' names
-//         .pipe(gulp.dest('dist/js')) // Write the renamed files
-//         .pipe(hash.manifest('dist/assets.json'))
-//         .pipe(gulp.dest('.')); // Write the manifest file (see note below)
-// })
+gulp.task('start', gulp.series('styles', 'js', 'html', 'img', 'connect'));
+
+gulp.task('build', gulp.series('styles', 'js', 'html', 'img'));
 
 
 // deploy to gh-pages
@@ -152,3 +115,40 @@ gulp.task('deploy', function() {
     return gulp.src('dist/**/*')
         .pipe(ghPages());
 });
+
+
+
+// gulp.task('concat-css', function () {
+//     return gulp.src(concatPath.css)
+//         .pipe(concat('main.css'))
+//         .pipe(hash()) // Add hashes to the files' names
+//         .pipe(gulp.dest('dist/css')) // Write the renamed files
+//         .pipe(hash.manifest('assets.json'))
+//         .pipe(gulp.dest(path.distCSS))
+// })
+// gulp.task('uglify', function() {
+//     return gulp.src(path.srcJS)
+//         .pipe(uglify())
+//         .pipe(rename({
+//             dirname: '',
+//             suffix: ".min"
+//         }))
+//         .pipe(gulp.dest('src/js/min/'));
+// })
+// gulp.task('js', function () {
+//     return gulp.src(concatPath.js)
+//         .pipe(rename({
+//             dirname: ''
+//         }))
+//         .pipe(gulp.dest(path.distJS));
+// })
+// gulp.task('styles', gulp.series('sass', 'concat-css'))
+// gulp.task('js', gulp.series('uglify', 'concat-js'))
+
+// gulp.task('hash', function () {
+//     return gulp.src('./dist/js/**/*.js')
+//         .pipe(hash()) // Add hashes to the files' names
+//         .pipe(gulp.dest('dist/js')) // Write the renamed files
+//         .pipe(hash.manifest('dist/assets.json'))
+//         .pipe(gulp.dest('.')); // Write the manifest file (see note below)
+// })
