@@ -1,9 +1,12 @@
 $(window).on('mousemove mousein', function (e) {
-    $('.a-cursor span').show();
-    $('.a-cursor span').css({
-        'top': e.pageY + 'px',
-        'left': e.pageX + 'px'
-    });
+    if(!isMobile){
+        $('.a-cursor span').show();
+        $('.a-cursor span').css({
+            'top': e.pageY + 'px',
+            'left': e.pageX + 'px'
+        });
+    }
+    
 });
 
 $(window).on('mouseleave', function () {

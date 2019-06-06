@@ -13,7 +13,7 @@ var path = {
     srcCSS: 'src/css/*.css',
     srcSass: ['src/sass/**/*.scss', 'src/sass/**/*.sass'],
     srcPug: 'src/pug/*.pug',
-    srcJS: 'src/js/*.js',
+    srcJS: 'src/js/**/*.js',
 
     tmpCss: 'src/css',
 

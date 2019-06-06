@@ -1,6 +1,3 @@
-var isTransAnimate = true;
-var isActive_KV = true;
-
 var itemList = [
     ['', '', ''],
     ['盛事公主號', 't2.jpg'],
@@ -24,8 +21,7 @@ var isMove = true;
 var currIndex = 0,
     prevIndex, nextIndex, hTopIndex, hBtmIndex;
 
-var wHeight = $(window).outerHeight();
-var wWidth = $(window).outerWidth();
+
 
 $(window).on('mousewheel', function (e) {
     var dir = (e.deltaY < 0) ? 1 : 0;
@@ -75,17 +71,7 @@ $(function () {
 
 });
 
-$(window).resize(function () {
-    wHeight = $(window).outerHeight();
-    wWidth = $(window).outerHeight();
-    if (wWidth >= 768) {
-        isTransAnimate = true
-    } else if (wWidth < 768) {
-        isTransAnimate = false
 
-    }
-    setOffset();
-});
 
 function moveItem(dir) {
 
