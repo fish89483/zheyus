@@ -1,3 +1,6 @@
+$(function () {
+    if(isMobile) $('.a-cursor span').hide();
+})
 $(window).on('mousemove mousein', function (e) {
     if(!isMobile){
         $('.a-cursor span').show();
