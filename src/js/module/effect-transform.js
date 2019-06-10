@@ -15,8 +15,10 @@ $(function () {
         var moveY = StrY * alignX;
         var $js_KV = $('#js-kv');
 
-
-        (isActive_KV) ? effectKV(): effectIMG();
+        if(!isMobile_W){
+            (isActive_KV) ? effectKV(): effectIMG();
+        }
+        
 
         function effectKV() {
             var tranX = moveY * str / -6;

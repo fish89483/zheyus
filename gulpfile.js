@@ -20,21 +20,27 @@ var path = {
     dist: 'dist/',
     distIndex: 'dist/index.html',
     distCSS: 'dist/css',
-    distJS: 'dist/js'
-}
-
-var concatPath = {
-    css: [
-        path.srcCSS
-    ],
-    js: [
+    distJS: 'dist/js',
+    concatJS: [
         'node_modules/**/jquery.min.js',
         'node_modules/**/jquery.mousewheel.js',
         'src/js/app.js',
         'src/js/module/*.js'
     ]
-
 }
+
+// var concatPath = {
+//     css: [
+//         path.srcCSS
+//     ],
+//     js: [
+//         'node_modules/**/jquery.min.js',
+//         'node_modules/**/jquery.mousewheel.js',
+//         'src/js/app.js',
+//         'src/js/module/*.js'
+//     ]
+
+// }
 
 
 
@@ -68,7 +74,7 @@ gulp.task('sass', function() {
 
 // concat
 gulp.task('js', function() {
-    return gulp.src(concatPath.js)
+    return gulp.src(path.concatJS)
         .pipe(uglify())
         .pipe(concat('main.js'))
         // .pipe(hash()) // Add hashes to the files' names

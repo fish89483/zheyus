@@ -13,10 +13,9 @@
                 br
                 | ROAD.
         .m-kv__img
-        
             //- ch-split
             each layer in ['c', 'm', 'y','f']
-                if(layer !='f')
+                if(layer != 'f')
                     .m-kv__layer.-back(class=`m-ch-split__img -ch-${layer}`)
                 else
                     .m-kv__layer.-front

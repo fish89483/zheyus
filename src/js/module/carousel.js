@@ -2,6 +2,7 @@ var itemList = [
     ['', '', ''],
     ['盛事公主號', 't2.jpg'],
     ['太陽公主號', 't3.jpg'],
+    ['傳奇號', 't4.jpg'],
     ['傳奇號', 't4.jpg']
 ];
 
@@ -41,12 +42,12 @@ $(window).on('touchend', function () {
         var dir = (t > 0) ? 1 : 0;
         moveItem(dir);
     }
-    
+
 });
 
 $(window).on('keydown', function (e) {
-    var code = e.which;
-    var dir = (code == 40) ? 1 : (code == 38) ? 0 : -1;
+    var k = e.which;
+    var dir = (k == 40) ? 1 : (k == 38) ? 0 : -1;
     if (dir >= 0) moveItem(dir);
 });
 
@@ -69,6 +70,7 @@ $(function () {
         $item.addClass('-animate');
     }, time_MOVE);
 
+    $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
 });
 
 
@@ -103,7 +105,6 @@ function moveItem(dir) {
             isMove = true;
             setKvActive();
             updateContent();
-
         }, time_MOVE);
 
         countIndex();
@@ -127,6 +128,7 @@ function countIndex() {
 
     if (hTopIndex < 0) hTopIndex = itemLen - 1;
     if (hBtmIndex >= itemLen) hBtmIndex = 0;
+    console.log(hTopIndex + '/' + prevIndex + '/' + currIndex +'/'+ nextIndex + '/' + hBtmIndex);
 }
 
 function updateTxt() {
@@ -146,12 +148,16 @@ function updateTxt() {
 
 function updateContent() {
 
-    $hideTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hTopIndex][1] + ')');
-    $hideBtm.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hBtmIndex][1] + ')');
-    $itemTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[prevIndex][1] + ')');
-    $itemCtr.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[currIndex][1] + ')');
-    $itemBtm.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[nextIndex][1] + ')');
+    if (!isMobile_W) {
+        $itemCtr.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[currIndex][1] + ')');
+    } else {
+        $itemCtr.find('.m-carousel__item').removeAttr('style').css('background-image', 'url(images/' + itemList[currIndex][1] + ')');
+    };
 
+    // $hideTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hTopIndex][1] + ')');
+    // $hideBtm.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[hBtmIndex][1] + ')');
+    // $itemTop.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[prevIndex][1] + ')');
+    // $itemBtm.find('.m-carousel__item').css('background-image', 'url(images/' + itemList[nextIndex][1] + ')');
 };
 
 function setTxtCtAnimate() {
