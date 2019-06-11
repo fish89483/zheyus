@@ -13,47 +13,51 @@ html(lang="zh-TW")
         .wrapper
             .a-scrolldown
                 span
-                span
             .o-carousel
-                - var items = ['hide-top', 'top', 'center', 'bottom', 'hide-bottom']
-                each item in items
-                    if item == 'center'
-                        .o-carousel__item(class=`-${item}`)
-                            .o-carousel__txt
-                                .m-carousel__txt-item
-                                    //- title
-                                    .m-carousel__title.t-title
-                                        .a-split__line
-                                            h2
-                                        .a-split__plane
-                                            h2
-                                    //- content
-                                    include include/carousel__txt-content.pug
-                                    //- .m-carousel__txt-content
+                .container
+                    - var items = ['hide-top', 'top', 'center', 'bottom', 'hide-bottom']
+                    each item in items
+                        if item == 'center'
+                            .o-carousel__item(class=`-${item}`)
+                                .o-carousel__txt
+                                    .m-carousel__txt-item
+                                        //- title
+                                        .m-carousel__title.t-title
+                                            .a-split__line
+                                                h2
+                                            .a-split__plane
+                                                h2
+                                        //- content
+                                        include include/carousel__txt-content.pug
+                                        //- .m-carousel__txt-content
+                                        
+                                .o-carousel__content
+                                    //- item
+                                    .m-carousel__item
+                                    //- center:
+                                    include include/kv.pug
                                     
-                            .o-carousel__content
-                                //- item
-                                .m-carousel__item
-                                //- center:
-                                include include/kv.pug
-                                
-                    else
-                        .o-carousel__item(class=`-${item}`)
-                            .o-carousel__txt
-                                //- title
-                                .m-carousel__txt-item
+                        else
+                            .o-carousel__item(class=`-${item}`)
+                                .o-carousel__txt
                                     //- title
-                                    .m-carousel__title.t-title
-                                        .a-split__line
-                                            h2
-                                        .a-split__plane
-                                            h2
-                            .o-carousel__content
-                                //- item
-                                .m-carousel__item
+                                    .m-carousel__txt-item
+                                        //- title
+                                        .m-carousel__title.t-title
+                                            .a-split__line
+                                                h2
+                                            .a-split__plane
+                                                h2
+                                .o-carousel__content
+                                    //- item
+                                    .m-carousel__item
 
                 .o-carousel__count
-
+            .m-pages
+                .a-burger
+                    span
+                include include/pages.pug
+                
 
                 
             

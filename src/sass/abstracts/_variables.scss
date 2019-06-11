@@ -49,11 +49,11 @@ $cursor: (
 );
 
 $scrolldown: (
-    size: 30px,
+    size: 80px,
     root-of-2: 1.41421,
     stroke: 2px,
     color: map-get($color, 9),
-    time: 700ms,
-    fn: cubic-bezier(0, 1.08, 1, 1.28),
+    time: 1000ms,
+    fn: linear,
     stretch-ratio: 2.5
 );

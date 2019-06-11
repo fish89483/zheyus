@@ -5,36 +5,30 @@
     z-index: 5
     transition: map-get($scrolldown, time)
     span
-        &:nth-child(1)
-            +size(100%/map-get($scrolldown, root-of-2))
-            +position(absolute,50%,'','',50%)
-            transform: translate(-50%,-50%) rotate(135deg)
-            &::before,&::after
-                content: ''
-                +size(100%,map-get($scrolldown, stroke))
-                +position(absolute)
-                background-color: map-get($scrolldown, color)
-                border-radius: 99em
-            &::after
-                transform-origin: right
-                transform: translate(map-get($scrolldown, stroke)/-2,map-get($scrolldown, stroke)/-2) rotate(-90deg)
-        &:nth-child(2)
-            +size(map-get($scrolldown, stroke),250%)
-            +position(absolute,'','',map-get($scrolldown, stroke),50%)
+        +size(map-get($scrolldown, stroke),100%)
+        +position(absolute,'','',map-get($scrolldown, stroke),50%)
+        background-color: map-get($scrolldown, color)
+        transform: translateX(-50%)
+        animation: scrolldown-line map-get($scrolldown, time) map-get($scrolldown, time) infinite
+        &::before,&::after
+            content: ''
+            +size(map-get($scrolldown, stroke),map-get($scrolldown, size)/map-get($scrolldown, root-of-2)/6)
+            +position(absolute,'','',0)
             background-color: map-get($scrolldown, color)
-            transform: translateX(-50%)
-            animation: scrolldown map-get($scrolldown, time) map-get($scrolldown, time) infinite 
-    
+            border-radius: 99em
+            transform-origin: bottom
+            animation: scrolldown-arrow map-get($scrolldown, time) map-get($scrolldown, time) infinite
+        &::before
+            transform: rotate(-45deg) translate(0px,1px)
+        &::after
+            transform: rotate(45deg) translate(0px,1px)
+
+
     &:hover
         span
-            &:nth-child(1)
-            &:nth-child(2)
+            animation-play-state: paused
+            &::before,&::after
                 animation-play-state: paused
-
-    // // when kv is shown
-    // &.-kv-active
-    //     bottom: 2%
-    //     opacity: 1
 
 
   

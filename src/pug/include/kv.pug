@@ -1,31 +1,30 @@
 //- -var text = 'ZHE YU XU'
 -var text = '遊輪旅遊'
 .m-kv#js-kv
-    .container
-        .m-kv__line
-            h1.t-kv-title=text
-            //- h1.t-kv-title 郵　輪
-            //-     br
-            //-     | 旅　遊
-            //- h1.t-kv-title ON
-                br 
-                | THE
-                br
-                | ROAD.
-        .m-kv__img
-            //- ch-split
-            each layer in ['c', 'm', 'y','f']
-                if(layer != 'f')
-                    .m-kv__layer.-back(class=`m-ch-split__img -ch-${layer}`)
-                else
-                    .m-kv__layer.-front
-        .m-kv__plane
-            h1.t-kv-title=text
-            //- h1.t-kv-title 郵　輪
-            //-     br
-            //-     | 旅　遊
-            //- h1.t-kv-title ON
-                br 
-                | THE
-                br
-                | ROAD.
+    .m-kv__line
+        h1.t-kv-title=text
+        //- h1.t-kv-title 郵　輪
+        //-     br
+        //-     | 旅　遊
+        //- h1.t-kv-title ON
+            br 
+            | THE
+            br
+            | ROAD.
+    .m-kv__img
+        //- ch-split
+        each layer in ['c', 'm', 'y','f']
+            if(layer != 'f')
+                .m-kv__layer.-back(class=`m-ch-split__img -ch-${layer}`)
+            else
+                .m-kv__layer.-front
+    .m-kv__plane
+        h1.t-kv-title=text
+        //- h1.t-kv-title 郵　輪
+        //-     br
+        //-     | 旅　遊
+        //- h1.t-kv-title ON
+            br 
+            | THE
+            br
+            | ROAD.

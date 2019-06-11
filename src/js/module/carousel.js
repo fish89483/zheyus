@@ -25,7 +25,7 @@ var currIndex = 0,
 
 
 $(window).on('mousewheel', function (e) {
-    var dir = (e.deltaY < 0) ? 1 : 0;
+    var dir = (e.deltaY < 0) ? 'next' : 'prev';
     moveItem(dir);
 })
 
@@ -39,7 +39,7 @@ $(window).on('touchmove', function (e) {
 $(window).on('touchend', function () {
     var t = startY - endY;
     if (t > 100 || t < -100) {
-        var dir = (t > 0) ? 1 : 0;
+        var dir = (t > 0) ? 'next' : 'prev'
         moveItem(dir);
     }
 
@@ -47,21 +47,25 @@ $(window).on('touchend', function () {
 
 $(window).on('keydown', function (e) {
     var k = e.which;
-    var dir = (k == 40) ? 1 : (k == 38) ? 0 : -1;
-    if (dir >= 0) moveItem(dir);
+    var dir = (k == 40) ? 'next' : (k == 38) ? 'prev' : '';
+    if (dir != '') moveItem(dir);
 });
 
 $('.a-scrolldown').on('click', function () {
     moveItem(1);
 });
 
+function dispatchIndex(num) {
+    var dir = setIndex(num);
+    moveItem(dir,true)
+}
 // function countTxtNum(num) {
 //     return ('0' + num).slice(-2)
 // }
 $(function () {
 
     setOffset();
-    countIndex();
+    setOtherIndex();
     updateTxt();
     updateContent();
     setKvActive();
@@ -74,24 +78,40 @@ $(function () {
 });
 
 
+function setIndex(e, dispatch) {
+    console.log(dispatch)
+    if (dispatch) {
+        return false
+    } else {
 
-function moveItem(dir) {
+        if (typeof (e) == 'string') {
+            switch (e) {
+                case 'next':
+                    currIndex += 1;
+                    if (currIndex >= itemLen) currIndex = 0;
+                    break;
+                case 'prev':
+                    currIndex -= 1;
+                    if (currIndex < 0) currIndex = itemLen - 1;
+                    break;
+            };
+        } else {
+            var dir = (currIndex < e) ? 'next' : 'prev';
+            currIndex = e;
+            return dir
+        }
+    }
+}
+
+function presetMove() {}
+
+function moveItem(dir,a) {
 
     if (isMove) {
         isMove = false;
+    
+        setIndex(dir, a);
 
-        switch (dir) {
-            case 1:
-                currIndex += 1;
-                if (currIndex >= itemLen) currIndex = 0;
-                break;
-            case 0:
-                currIndex -= 1;
-                if (currIndex < 0) currIndex = itemLen - 1;
-                break;
-        };
-
-        dir = (dir == 1) ? 'next' : 'prev';
 
         $item.addClass('-stop -' + dir);
         $item.offset();
@@ -107,7 +127,7 @@ function moveItem(dir) {
             updateContent();
         }, time_MOVE);
 
-        countIndex();
+        setOtherIndex();
         updateTxt();
         setTxtCtAnimate();
         $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
@@ -115,7 +135,7 @@ function moveItem(dir) {
     };
 }
 
-function countIndex() {
+function setOtherIndex() {
 
     prevIndex = currIndex - 1;
     nextIndex = currIndex + 1;
@@ -128,7 +148,7 @@ function countIndex() {
 
     if (hTopIndex < 0) hTopIndex = itemLen - 1;
     if (hBtmIndex >= itemLen) hBtmIndex = 0;
-    console.log(hTopIndex + '/' + prevIndex + '/' + currIndex +'/'+ nextIndex + '/' + hBtmIndex);
+    console.log(hTopIndex + '/' + prevIndex + '/' + currIndex + '/' + nextIndex + '/' + hBtmIndex);
 }
 
 function updateTxt() {

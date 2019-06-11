@@ -39,7 +39,7 @@ $(function () {
 
         function effectIMG() {
             var rotaX = moveX * str / -2;
-            var rotaY = (moveY * str / 3 > -10) ? -10 : (moveY * str / 3 < -50) ? -50 : moveY * str / 3;
+            var rotaY = (moveY * str / 3 > -5) ? -5 : (moveY * str / 3 < -50) ? -50 : moveY * str / 3;
             $item_img.css('transform', 'rotateY(' + rotaY + 'deg) rotateX(' + rotaX + 'deg)');
 
         }

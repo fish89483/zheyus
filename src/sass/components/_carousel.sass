@@ -4,6 +4,8 @@ $move-delta: 80%
     +size(100%)
     position: relative
     overflow: hidden
+    .container
+        +size(100%)
     &__item
         +size(100%,50%)
         position: relative
@@ -163,7 +165,8 @@ $move-delta: 80%
         // transition: 50ms
 
     &__item
-        +size(43.5%,100%)
+        // +size(43.5%,100%)
+        +size(50%,100%)
         +bg('',center,cover)
         +position(absolute)
         // +noise('after')
@@ -175,3 +178,12 @@ $move-delta: 80%
         +rwd(m)
             width: 100%
             transform: rotateY(0deg) rotateX(0deg) translateY(50%)
+
+.a-cta
+    width: 100px
+    display: inline-block
+    padding: 12px
+    margin-top: 30px
+    border: 1px solid map-get($color, sec)
+    text-align: center
+    line-height: 1
