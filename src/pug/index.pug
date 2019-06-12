@@ -11,9 +11,14 @@ html(lang="zh-TW")
         .a-cursor
             span
         .wrapper
-            .a-scrolldown
-                span
+            .m-menu
+                - var items = ['盛事公主號', '太陽公主號', '傳奇號', '傳奇號']
+                ul
+                    each item, index in items
+                        li(onclick=`dispatchIndex(${index+1})`)=item
             .o-carousel
+                .a-scrolldown
+                    span
                 .container
                     - var items = ['hide-top', 'top', 'center', 'bottom', 'hide-bottom']
                     each item in items
@@ -55,6 +60,8 @@ html(lang="zh-TW")
                 .o-carousel__count
             .m-pages
                 .a-burger
+                    span
+                    span
                     span
                 include include/pages.pug
                 

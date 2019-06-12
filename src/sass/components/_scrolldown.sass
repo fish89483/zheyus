@@ -12,7 +12,7 @@
         animation: scrolldown-line map-get($scrolldown, time) map-get($scrolldown, time) infinite
         &::before,&::after
             content: ''
-            +size(map-get($scrolldown, stroke),map-get($scrolldown, size)/map-get($scrolldown, root-of-2)/6)
+            +size(map-get($scrolldown, stroke),map-get($scrolldown, size)/map-get($const, root-of-2)/6)
             +position(absolute,'','',0)
             background-color: map-get($scrolldown, color)
             border-radius: 99em

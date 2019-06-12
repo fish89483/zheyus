@@ -1,0 +1,20 @@
+// menu
+.m-menu
+    +size(250px, 100%)
+    +position(absolute,0,-250px)
+    border-left: 1px solid
+    z-index: 1
+    transition: map-get($time, transition)
+    ul
+        +size(100%)
+        +center(flex)
+        align-content: center
+        flex-wrap: wrap
+    li
+        width: 100%
+        display: block
+        padding: 15px
+        margin: 10px 0
+        text-align: center
+    &.-active
+        right: 0

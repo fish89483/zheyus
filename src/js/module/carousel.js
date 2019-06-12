@@ -52,16 +52,17 @@ $(window).on('keydown', function (e) {
 });
 
 $('.a-scrolldown').on('click', function () {
-    moveItem(1);
+    moveItem('next');
 });
 
 function dispatchIndex(num) {
-    var dir = setIndex(num);
-    moveItem(dir,true)
-}
+    var dir = setIndex(num, true);
+    moveItem(dir, true)
+};
 // function countTxtNum(num) {
 //     return ('0' + num).slice(-2)
 // }
+
 $(function () {
 
     setOffset();
@@ -78,40 +79,13 @@ $(function () {
 });
 
 
-function setIndex(e, dispatch) {
-    console.log(dispatch)
-    if (dispatch) {
-        return false
-    } else {
 
-        if (typeof (e) == 'string') {
-            switch (e) {
-                case 'next':
-                    currIndex += 1;
-                    if (currIndex >= itemLen) currIndex = 0;
-                    break;
-                case 'prev':
-                    currIndex -= 1;
-                    if (currIndex < 0) currIndex = itemLen - 1;
-                    break;
-            };
-        } else {
-            var dir = (currIndex < e) ? 'next' : 'prev';
-            currIndex = e;
-            return dir
-        }
-    }
-}
-
-function presetMove() {}
-
-function moveItem(dir,a) {
+function moveItem(dir, isDispatch) {
 
     if (isMove) {
         isMove = false;
-    
-        setIndex(dir, a);
 
+        setIndex(dir, isDispatch);
 
         $item.addClass('-stop -' + dir);
         $item.offset();
@@ -133,7 +107,34 @@ function moveItem(dir,a) {
         $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
 
     };
-}
+};
+
+function setIndex(e, isDispatch) {
+    if (typeof (e) === 'string' && isDispatch) {
+        return false;
+    } else {
+
+        if (isDispatch) {
+            var dir = (currIndex < e) ? 'next' : 'prev';
+            currIndex = e;
+            return dir;
+        };
+
+        if (typeof (e) === 'string' && isDispatch === undefined) {
+            switch (e) {
+                case 'next':
+                    currIndex += 1;
+                    if (currIndex >= itemLen) currIndex = 0;
+                    break;
+                case 'prev':
+                    currIndex -= 1;
+                    if (currIndex < 0) currIndex = itemLen - 1;
+                    break;
+            };
+        };
+
+    };
+};
 
 function setOtherIndex() {
 
@@ -148,7 +149,7 @@ function setOtherIndex() {
 
     if (hTopIndex < 0) hTopIndex = itemLen - 1;
     if (hBtmIndex >= itemLen) hBtmIndex = 0;
-    console.log(hTopIndex + '/' + prevIndex + '/' + currIndex + '/' + nextIndex + '/' + hBtmIndex);
+    // console.log(hTopIndex + '/' + prevIndex + '/' + currIndex + '/' + nextIndex + '/' + hBtmIndex);
 }
 
 function updateTxt() {

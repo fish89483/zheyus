@@ -1,10 +1,14 @@
+$const: (
+    root-of-2: 1.41421,
+);
 $color: (
     // main: #11acf0,
     test: red,
     9: #999999,
     main: #d34444,
-    sec: #42422f,
-    bg: #fffdf1
+    sec: #68684a,
+    title: #a29578,
+    bg: #fffee8
 );
 
 $img: (
@@ -37,10 +41,12 @@ $kv: (
 );
 
 $cursor: (
+    size: 16px,
     color: map-get($color, main),
     time: (
         in: 400ms,
-        out: 300ms
+        out: 300ms,
+        click: 150ms
     ),
     fn: (
         trans: cubic-bezier(0.75, -1.27, 0.3, 2.33),
@@ -50,10 +56,17 @@ $cursor: (
 
 $scrolldown: (
     size: 80px,
-    root-of-2: 1.41421,
     stroke: 2px,
     color: map-get($color, 9),
     time: 1000ms,
     fn: linear,
     stretch-ratio: 2.5
 );
+$burger: (
+    size: 50px,
+    each-width: 70%,
+    each-height: 8%,
+    distance: 30%,
+    color: map-get($color, 9),
+    time: 400ms,
+)

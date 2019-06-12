@@ -3,7 +3,7 @@
     +position(absolute,0,'','',0)
     overflow: hidden
     span
-        +size(16px)
+        +size(map-get($cursor, size))
         +position(absolute,0,'','',0)
         background-color: map-get($cursor, color)
         // border-radius: 99em
@@ -16,10 +16,14 @@
         // +rwd(s)
         //     opacity: 0
         
-    &.-active
+    &.-hover
         span
             transform: scale(4)
             border-radius: 99em
             opacity: 0.3
             transition-duration: map-deep-get($cursor, time, in), map-deep-get($cursor, time, in)
-                
+    &.-active 
+        span
+            transform: scale(2)
+            opacity: 0.8
+            transition-duration: map-deep-get($cursor, time, click), map-deep-get($cursor, time, click)

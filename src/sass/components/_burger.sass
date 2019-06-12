@@ -1,2 +1,45 @@
 // burger
-    // fucking burger here
+.a-burger
+    +size(map-get($burger, size))
+    position: absolute
+    top: 0
+    right: 0
+    z-index: 2
+    span
+        +size(map-get($burger, each-height))
+        +position(absolute,'','','',50%)
+        background-color: map-get($burger, color)
+        border-radius: 99em
+        transition: map-get($burger, time)
+        &:nth-child(1)
+            top: map-get($burger, distance)
+            transform: translate(-50%,0)
+        &:nth-child(2)
+            top: 50%
+            transform: translate(-50%,-50%)
+        &:nth-child(3)
+            bottom: map-get($burger, distance)
+            transform: translate(-50%,0)
+
+    &:hover
+        span
+            width: map-get($burger, each-width)
+            // &:nth-child(1)
+            //     top: map-get($burger, distance) - 5%
+            // &:nth-child(3)
+            //     bottom: map-get($burger, distance) - 5%
+
+    &.-active
+        span
+            width: map-get($burger, each-width)
+            &:nth-child(1)
+                top: 50%
+                transform: translate(-50%,-50%) rotate(-315deg)
+            &:nth-child(2)
+                +size(0%)
+                opacity: 0
+                transform: translate(-50%,-50%) rotate(-405deg)
+            &:nth-child(3)
+                bottom: 50%
+                transform: translate(-50%,50%) rotate(-405deg)
+            

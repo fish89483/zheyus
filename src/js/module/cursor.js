@@ -1,26 +1,39 @@
 $(function () {
-    if(isMobile) $('.a-cursor span').hide();
+    if (isMobile) $('.a-cursor span').hide();
 })
+
+// move
 $(window).on('mousemove mousein', function (e) {
-    if(!isMobile){
+    if (!isMobile) {
         $('.a-cursor span').show();
         $('.a-cursor span').css({
             'top': e.pageY + 'px',
             'left': e.pageX + 'px'
         });
     }
-    
+
 });
 
+// overflow screen
 $(window).on('mouseleave', function () {
     $('.a-cursor span').hide();
 });
 
-var $cursorTrans = $('.m-carousel__item, .a-scrolldown, .t-title, .t-txt, a, img');
-$cursorTrans.on('mouseenter', function () {
+// click
+$(window).on('mousedown', function () {
     $('.a-cursor').addClass('-active');
 });
 
-$cursorTrans.on('mouseleave', function () {
+$(window).on('mouseup', function () {
     $('.a-cursor').removeClass('-active');
+});
+
+// hover
+var $cursorTrans = $('.m-carousel__item, .a-scrolldown,.a-burger, .t-title, .t-txt, a, img');
+$cursorTrans.on('mouseenter', function () {
+    $('.a-cursor').addClass('-hover');
+});
+
+$cursorTrans.on('mouseleave', function () {
+    $('.a-cursor').removeClass('-hover');
 });
