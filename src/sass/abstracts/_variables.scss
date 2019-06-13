@@ -1,6 +1,7 @@
 $const: (
     root-of-2: 1.41421,
 );
+
 $color: (
     // main: #11acf0,
     test: red,
@@ -62,11 +63,12 @@ $scrolldown: (
     fn: linear,
     stretch-ratio: 2.5
 );
+
 $burger: (
     size: 50px,
     each-width: 70%,
     each-height: 8%,
     distance: 30%,
-    color: map-get($color, 9),
+    color: map-get($color, sec),
     time: 400ms,
 )

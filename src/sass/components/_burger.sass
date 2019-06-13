@@ -1,10 +1,8 @@
 // burger
 .a-burger
     +size(map-get($burger, size))
-    position: absolute
-    top: 0
-    right: 0
-    z-index: 2
+    +position(absolute,10px,10px)
+    z-index: 15
     span
         +size(map-get($burger, each-height))
         +position(absolute,'','','',50%)

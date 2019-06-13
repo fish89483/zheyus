@@ -2,3 +2,10 @@
 .m-pages
     +size(100%)
     +position(absolute,0)
+    opacity: 0
+    pointer-events: none
+    transition: map-get($time, transition)
+    &__item
+        display: none
+        &.-active
+            display: block

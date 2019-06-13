@@ -57,7 +57,7 @@ $('.a-scrolldown').on('click', function () {
 
 function dispatchIndex(num) {
     var dir = setIndex(num, true);
-    moveItem(dir, true)
+    moveItem(dir, true);
 };
 // function countTxtNum(num) {
 //     return ('0' + num).slice(-2)
@@ -82,7 +82,7 @@ $(function () {
 
 function moveItem(dir, isDispatch) {
 
-    if (isMove) {
+    if (isMove && !isPageview) {
         isMove = false;
 
         setIndex(dir, isDispatch);

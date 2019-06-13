@@ -1,10 +1,25 @@
 // menu
 .m-menu
-    +size(250px, 100%)
-    +position(absolute,0,-250px)
-    border-left: 1px solid
-    z-index: 1
+    +size(100%)
+    +position(absolute,0,0,0,0)
+    pointer-events: none
+    opacity: 0
     transition: map-get($time, transition)
+    z-index: 10
+    &__mask
+        +size(100%)
+        +position(absolute,0,'','',0)
+        background-color: rgba(0,0,0,.1)
+        transition: map-get($time, transition)
+
+    &__content
+        +size(250px, 100%)
+        +position(absolute,0,-250px)
+        +noise
+        background-color: map-get($color, bg)
+        border-left: 1px solid
+        z-index: 1
+        transition: map-get($time, transition)
     ul
         +size(100%)
         +center(flex)
@@ -17,4 +32,9 @@
         margin: 10px 0
         text-align: center
     &.-active
-        right: 0
+        opacity: 1
+        pointer-events: auto
+        .m-menu__mask
+            width: calc(100% - 250px)
+        .m-menu__content
+            right: 0

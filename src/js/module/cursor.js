@@ -29,7 +29,7 @@ $(window).on('mouseup', function () {
 });
 
 // hover
-var $cursorTrans = $('.m-carousel__item, .a-scrolldown,.a-burger, .t-title, .t-txt, a, img');
+var $cursorTrans = $('.m-carousel__item, .a-scrolldown,.a-burger, .t-title, .t-txt, a, img, .c-hover');
 $cursorTrans.on('mouseenter', function () {
     $('.a-cursor').addClass('-hover');
 });
