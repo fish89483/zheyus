@@ -1,20 +1,30 @@
 // menu
-.m-menu
+$menu-width: 250px   
+
+.o-header__menu
     +size(100%)
     +position(absolute,0,0,0,0)
     pointer-events: none
     opacity: 0
+    overflow: hidden
     transition: map-get($time, transition)
     z-index: 10
-    &__mask
+    &.-active
+        opacity: 1
+        pointer-events: auto
+        .o-header__menu-mask
+            width: calc(100% - #{$menu-width})
+        .o-header__menu-content
+            right: 0
+    &-mask
         +size(100%)
         +position(absolute,0,'','',0)
         background-color: rgba(0,0,0,.1)
         transition: map-get($time, transition)
 
-    &__content
-        +size(250px, 100%)
-        +position(absolute,0,-250px)
+    &-content
+        +size($menu-width, 100%)
+        +position(absolute, 0, $menu-width * -1)
         +noise
         background-color: map-get($color, bg)
         border-left: 1px solid
@@ -22,19 +32,12 @@
         transition: map-get($time, transition)
     ul
         +size(100%)
-        +center(flex)
+        display: flex
         align-content: center
         flex-wrap: wrap
     li
         width: 100%
         display: block
-        padding: 15px
-        margin: 10px 0
+        padding: 12px
+        margin: 12px 0
         text-align: center
-    &.-active
-        opacity: 1
-        pointer-events: auto
-        .m-menu__mask
-            width: calc(100% - 250px)
-        .m-menu__content
-            right: 0

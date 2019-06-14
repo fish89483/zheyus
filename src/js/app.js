@@ -7,27 +7,32 @@ var isPageview = false;
 var wHeight = $(window).outerHeight();
 var wWidth = $(window).outerWidth();
 
-
+deviceDetectionW();
 deviceDetection();
 
 $(window).resize(function () {
     wHeight = $(window).outerHeight();
     wWidth = $(window).outerWidth();
-    if (wWidth >= 993) {
-        isMobile_W = false;
-    } else if (wWidth < 993) {
-        isMobile_W = true;
-    };
+
+    deviceDetection();
+    deviceDetectionW();
+    setOffset();
 
     if (isMobile_W) {
         $('.m-kv__layer').css('transform', 'translate(0) rotateY(0deg) rotateX(0deg) translateZ(0)');
 
         updateContent(); // refresh background-image
     };
-    deviceDetection();
-    setOffset();
 });
 
+
+function deviceDetectionW() {
+    if (wWidth >= 993) {
+        isMobile_W = false;
+    } else if (wWidth < 993) {
+        isMobile_W = true;
+    };
+}
 
 function deviceDetection() {
     // device detection
@@ -35,52 +40,6 @@ function deviceDetection() {
 };
 
 
-$('.a-burger').on('click', function () {
 
-    if (!isPageview) {
 
-        // toggle menu (pages-view closed)
-        if (!$(this).hasClass('-active')) {
 
-            $('.m-menu').addClass('-active');
-            $('.a-burger').addClass('-active');
-
-        } else {
-            menuClose();
-        };
-
-    } else {
-
-        // close pages-view
-        isPageview = false;
-        $('.wrapper').removeClass('-pages-view');
-        $('.m-pages__item').removeClass('-active');
-        menuClose();
-
-    };
-
-});
-
-$('.m-menu__mask').on('click', function () {
-    menuClose();
-});
-
-$('.a-cta').on('click', function () {
-    var num = parseInt($(this).attr('id').split('-')[1]);       // #cta-2
-    $('#pages-' + num).addClass('-active');                     // #pages-2
-    $('.a-burger').addClass('-active');
-    $('.wrapper').addClass('-pages-view');
-    isPageview = true;
-
-});
-
-$('.m-menu li').on('click', function () {
-    var num = parseInt($(this).attr('id').split('-')[1]) - 1;   // #menu-2
-    menuClose();
-    dispatchIndex(num);
-});
-
-function menuClose() {
-    $('.m-menu').removeClass('-active');
-    $('.a-burger').removeClass('-active');
-};

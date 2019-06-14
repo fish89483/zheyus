@@ -5,14 +5,18 @@
         position: absolute
     &__plane
         >*
-            transform: translate(-2px,2px)
-            transition: map-get($time, transition) ease
-        &:hover
-            >*
-                transform: translate(0,0)
+            transform: translate(-2px,1px)
+            transition: map-get($time, transition)
     &__line
         z-index: 2
-        pointer-events: none
         >*
             color: transparent
-            -webkit-text-stroke: 1px #000
+            -webkit-text-stroke-width: 1px
+            transform: translate(2px,-1px)
+            transition: map-get($time, transition)
+        &:hover
+            &, & ~.a-split__plane
+                >*
+                    transform: translate(0)
+
+        

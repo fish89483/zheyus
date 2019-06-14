@@ -5,23 +5,17 @@ html(lang="zh-TW")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Document
+
         link(rel="stylesheet", href="css/main.css")
 
     body
         .a-cursor
             span
         .wrapper
-            .a-burger
-                span
-                span
-                span
-            .m-menu
-                .m-menu__mask
-                .m-menu__content
-                    - var items = ['盛事公主號', '太陽公主號', '傳奇號', '傳奇號']
-                    ul
-                        each item, index in items
-                            li(id=`menu-${index+1+1}`, class=`c-hover`)=item
+            //- include header
+            include include/header.pug
+
+            //- carousel
             .o-carousel
                 .a-scrolldown
                     span
@@ -38,20 +32,20 @@ html(lang="zh-TW")
                                                 h2
                                             .a-split__plane
                                                 h2
-                                        //- content
+
+                                        //- include txt-content-------------------
                                         include include/carousel__txt-content.pug
-                                        //- .m-carousel__txt-content
+                                        //- .m-carousel__txt-content--------------
                                         
                                 .o-carousel__content
                                     //- item
                                     .m-carousel__item
-                                    //- center:
+                                    //- include kv
                                     include include/kv.pug
                                     
                         else
                             .o-carousel__item(class=`-${item}`)
                                 .o-carousel__txt
-                                    //- title
                                     .m-carousel__txt-item
                                         //- title
                                         .m-carousel__title.t-title
@@ -59,12 +53,17 @@ html(lang="zh-TW")
                                                 h2
                                             .a-split__plane
                                                 h2
-                                .o-carousel__content
-                                    //- item
-                                    .m-carousel__item
+
+                                //- .o-carousel__content
+                                //-     //- item
+                                //-     .m-carousel__item-shadow
+                                //-     .m-carousel__item
 
                 .o-carousel__count
+
+            //- pages
             .m-pages
+                //- include pages
                 include include/pages.pug
                 
 

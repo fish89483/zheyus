@@ -23,20 +23,19 @@ var currIndex = 0,
     prevIndex, nextIndex, hTopIndex, hBtmIndex;
 
 
-
-$(window).on('mousewheel', function (e) {
+$('.o-carousel').on('mousewheel', function (e) {
     var dir = (e.deltaY < 0) ? 'next' : 'prev';
     moveItem(dir);
 })
 
 var startY, endY;
-$(window).on('touchstart', function (e) {
+$('.o-carousel').on('touchstart', function (e) {
     startY = e.touches[0].clientY;
 });
-$(window).on('touchmove', function (e) {
+$('.o-carousel').on('touchmove', function (e) {
     endY = e.touches[0].clientY;
 });
-$(window).on('touchend', function () {
+$('.o-carousel').on('touchend', function () {
     var t = startY - endY;
     if (t > 100 || t < -100) {
         var dir = (t > 0) ? 'next' : 'prev'
@@ -55,10 +54,6 @@ $('.a-scrolldown').on('click', function () {
     moveItem('next');
 });
 
-function dispatchIndex(num) {
-    var dir = setIndex(num, true);
-    moveItem(dir, true);
-};
 // function countTxtNum(num) {
 //     return ('0' + num).slice(-2)
 // }
@@ -78,7 +73,10 @@ $(function () {
     $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
 });
 
-
+function dispatchIndex(num) {
+    var dir = setIndex(num, true);
+    moveItem(dir, true);
+};
 
 function moveItem(dir, isDispatch) {
 
@@ -184,19 +182,24 @@ function updateContent() {
 function setTxtCtAnimate() {
 
     var $txtCtActive = $('.m-carousel__txt-content.-txt-content-' + (currIndex + 1));
-    var $txtCtActiveH = $txtCtActive.outerHeight();
+    // var $txtCtActiveH = $txtCtActive.outerHeight();
 
     if (currIndex != 0) {
 
         $txtCtActive.addClass('-active').siblings().removeClass('-active');
-        $txtCtActive.css({
-            'height': '0px',
-            'position': 'relative'
-        }).siblings().removeAttr('style');
-
-        setTimeout(function () {
-            $txtCtActive.css('height', $txtCtActiveH + 'px');
-        }, time_MOVE);
+        // if(!isMobile_W){
+        //     $txtCtActive.css({
+        //         'height': '0px',
+        //         'position': 'relative'
+        //     }).siblings().removeAttr('style');
+    
+        //     setTimeout(function () {
+        //         $txtCtActive.css('height', $txtCtActiveH + 'px');
+        //     }, time_MOVE);
+        // }else{
+            $txtCtActive.css('position', 'relative').siblings().removeAttr('style');
+        // }
+        
 
     } else {
         $('.m-carousel__txt-content').removeClass('-active').removeAttr('style');

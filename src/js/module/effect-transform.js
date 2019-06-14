@@ -1,6 +1,6 @@
 $(function () {
 
-    var $item_img = $('.m-carousel__item');
+    // var $item_img = $('.m-carousel__item');
 
     $(window).on('mousemove mousein', function (e) {
 
@@ -15,10 +15,10 @@ $(function () {
         var moveY = StrY * alignX;
         var $js_KV = $('#js-kv');
 
-        if(!isMobile_W){
+        if (!isMobile_W && !isPageview) {
             (isActive_KV) ? effectKV(): effectIMG();
         }
-        
+
 
         function effectKV() {
             var tranX = moveY * str / -6;
@@ -39,14 +39,14 @@ $(function () {
 
         function effectIMG() {
             var rotaX = moveX * str / -2;
-            var rotaY = (moveY * str / 3 > -5) ? -5 : (moveY * str / 3 < -50) ? -50 : moveY * str / 3;
-            $item_img.css('transform', 'rotateY(' + rotaY + 'deg) rotateX(' + rotaX + 'deg)');
+            var rotaY = (moveY * str / 3 > 10) ? 10 : (moveY * str / 3 < -50) ? -50 : moveY * str / 3;
+            $('.m-carousel__item').css('transform', 'rotateY(' + rotaY + 'deg) rotateX(' + rotaX + 'deg)');
 
         }
     });
 
-    $item_img.on('mouseleave', function (e) {
+    $('.m-carousel__item').on('mouseleave', function (e) {
         // img
-        $item_img.css('transform', 'rotateY(0deg) rotateX(0deg)');
+        $('.m-carousel__item').css('transform', 'rotateY(0deg) rotateX(0deg)');
     });
 });

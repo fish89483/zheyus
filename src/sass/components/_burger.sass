@@ -4,7 +4,7 @@
     +position(absolute,10px,10px)
     z-index: 15
     span
-        +size(map-get($burger, each-height))
+        +size(map-get($burger, each-height)*1.5)
         +position(absolute,'','','',50%)
         background-color: map-get($burger, color)
         border-radius: 99em
@@ -21,15 +21,15 @@
 
     &:hover
         span
-            width: map-get($burger, each-width)
-            // &:nth-child(1)
-            //     top: map-get($burger, distance) - 5%
-            // &:nth-child(3)
-            //     bottom: map-get($burger, distance) - 5%
+            +size(map-get($burger, each-width), map-get($burger, each-height))
+            &:nth-child(1)
+                top: map-get($burger, distance) + 10%
+            &:nth-child(3)
+                bottom: map-get($burger, distance) + 10%
 
     &.-active
         span
-            width: map-get($burger, each-width)
+            +size(map-get($burger, each-width), map-get($burger, each-height))
             &:nth-child(1)
                 top: 50%
                 transform: translate(-50%,-50%) rotate(-315deg)

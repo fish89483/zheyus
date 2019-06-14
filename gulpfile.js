@@ -44,7 +44,7 @@ var path = {
 
 
 
-// 建立預設 gulp task
+// pug - prettify
 gulp.task('html', function() {
     return gulp.src(path.srcPug)
         .pipe(pug({
@@ -52,9 +52,9 @@ gulp.task('html', function() {
         }))
         .pipe(gulp.dest(path.dist))
         .pipe(connect.reload());
-    // .pipe(gulpLivereload())
-})
+});
 
+// sass - compressed & autoprefixer
 gulp.task('sass', function() {
     return gulp.src(path.srcSass)
         .pipe(sass({
@@ -68,11 +68,12 @@ gulp.task('sass', function() {
         // .pipe(hash.manifest('assets.json'))
         .pipe(gulp.dest(path.distCSS))
         .pipe(connect.reload());
-    // .pipe(gulpLivereload())
 
 });
 
-// concat
+gulp.task('styles', gulp.series('sass'));
+
+// js - concat & uglify
 gulp.task('js', function() {
     return gulp.src(path.concatJS)
         .pipe(uglify())
@@ -82,16 +83,13 @@ gulp.task('js', function() {
         // .pipe(hash.manifest('assets.json'))
         .pipe(gulp.dest(path.distJS))
         .pipe(connect.reload());
-    // .pipe(gulpLivereload())
 })
-
-
-gulp.task('styles', gulp.series('sass'));
 
 gulp.task('img', function() {
     return gulp.src('src/images/*')
-        .pipe(gulp.dest('dist/images/'))
+        .pipe(gulp.dest('dist/images/'));
 })
+
 
 gulp.task('server', function() {
     connect.server({
@@ -99,9 +97,9 @@ gulp.task('server', function() {
         livereload: true
     });
 });
+
 // watch
 gulp.task('watch', function() {
-    // gulpLivereload.listen();
     gulp.parallel('connect')
     gulp.watch('src/images/*', gulp.series('img'))
     gulp.watch(path.srcSass, gulp.series('styles'));
@@ -109,18 +107,17 @@ gulp.task('watch', function() {
     gulp.watch([path.srcPug,'src/pug/**/*.pug'], gulp.series('html'));
 });
 
+
 gulp.task('connect', gulp.parallel('server', 'watch'))
 
 gulp.task('start', gulp.series('styles', 'js', 'html', 'img', 'connect'));
-
-gulp.task('build', gulp.series('styles', 'js', 'html', 'img'));
-
 
 // deploy to gh-pages
 gulp.task('deploy', function() {
     return gulp.src('dist/**/*')
         .pipe(ghPages());
 });
+
 
 
 
