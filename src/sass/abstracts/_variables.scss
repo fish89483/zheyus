@@ -31,7 +31,7 @@ $carousel: (
     ),
     color: (
         title: map-get($color, title),
-        title-stroke: map-get($color, sec)
+        title-stroke: map-get($color, sec),
     )
 );
 
