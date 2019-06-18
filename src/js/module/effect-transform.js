@@ -21,10 +21,10 @@ $(function () {
 
 
         function effectKV() {
-            var tranX = moveY * str / -6;
+            var tranX = moveY * str / -2;
             var tranY = moveX * str / 1;
-            var rotaX = moveX * str / -6;
-            var rotaY = moveY * str / 6;
+            var rotaX = moveX * str / -2;
+            var rotaY = moveY * str / 4;
             // rotaY = (rotaY > 10 || rotaY < 2.5) ? 0 : rotaY;
 
             // front
