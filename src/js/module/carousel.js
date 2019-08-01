@@ -25,7 +25,9 @@ var currIndex = 0,
 
 $('.o-carousel').on('mousewheel', function (e) {
     var dir = (e.deltaY < 0) ? 'next' : 'prev';
-    moveItem(dir);
+    debounce(moveItem(dir), 200)
+
+  
 })
 
 var startY, endY;
@@ -192,14 +194,14 @@ function setTxtCtAnimate() {
         //         'height': '0px',
         //         'position': 'relative'
         //     }).siblings().removeAttr('style');
-    
+
         //     setTimeout(function () {
         //         $txtCtActive.css('height', $txtCtActiveH + 'px');
         //     }, time_MOVE);
         // }else{
-            $txtCtActive.css('position', 'relative').siblings().removeAttr('style');
+        $txtCtActive.css('position', 'relative').siblings().removeAttr('style');
         // }
-        
+
 
     } else {
         $('.m-carousel__txt-content').removeClass('-active').removeAttr('style');
