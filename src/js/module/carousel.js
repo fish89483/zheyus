@@ -18,17 +18,67 @@ var l_ItemLen = 5; //hideTop, hideBtm, top, center, bottom
 var itemLen = itemList.length;
 var time_MOVE = 500;
 var isMove = true;
-
+var canWheel = true;
 var currIndex = 0,
     prevIndex, nextIndex, hTopIndex, hBtmIndex;
 
+// var handleMouseWheel = function(e) {
+//     console.log(e.originalEvent.wheelDelta )
+//     var dir = (e.deltaY < 0) ? 'next' : 'prev';
+//     moveItem(dir);
+//     console.log('fuckuuuuuo')
+// }
 
-$('.o-carousel').on('mousewheel', function (e) {
-    var dir = (e.deltaY < 0) ? 'next' : 'prev';
-    debounce(moveItem(dir), 200)
+// var scroll_val = 0
+// var scroll_val_temp = null
+// var disable_scroll = false
 
-  
-})
+// $('.o-carousel').on('mousewheel', function(evt) {
+//     scroll_val_temp = scroll_val
+//     scroll_val = evt.deltaY
+//     disable_scroll = true
+
+//     if (!disable_scroll) {
+//         // change page
+//     }
+
+//     if (scroll_val === scroll_val_temp) {
+//         disable_scroll = false
+//     }
+// })
+
+var isbind = true
+var mouseWheelEnd = debounce(function (e) {
+    // var dir = (e.deltaY < 0) ? 'next' : 'prev';
+    // moveItem(dir);
+    // console.log('fucku')
+
+    //---- if no start -> on start
+    if(!isbind){
+        $('.o-carousel').on('mousewheel.start', mouseWheelStart);
+    }else{
+        $('.o-carousel').off('mousewheel.start', mouseWheelStart);
+    }
+    
+    canWheel = true;
+}, 50);
+var mouseWheelStart = function (e) {
+    // console.log($('.o-carousel'))
+    // console.log('trigger')
+    if (canWheel) {
+        canWheel = false;
+        isbind = false;
+        $('.o-carousel').off('mousewheel.start', mouseWheelStart);
+        var dir = (e.deltaY < 0) ? 'next' : 'prev';
+        moveItem(dir);
+
+    }
+}
+
+
+
+$('.o-carousel').on('mousewheel.start', mouseWheelStart);
+$('.o-carousel').on('mousewheel.end', mouseWheelEnd);
 
 var startY, endY;
 $('.o-carousel').on('touchstart', function (e) {
@@ -81,7 +131,7 @@ function dispatchIndex(num) {
 };
 
 function moveItem(dir, isDispatch) {
-
+    // console.log('fuckk');
     if (isMove && !isPageview) {
         isMove = false;
 
@@ -93,18 +143,19 @@ function moveItem(dir, isDispatch) {
         $item.addClass('-start');
         $item.removeClass('-animate');
 
+        setOtherIndex();
+        updateTxt();
+        setTxtCtAnimate();
+        $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
+
         setTimeout(function () {
             $item.removeClass('-start -' + dir);
             $item.addClass('-animate');
             isMove = true;
             setKvActive();
             updateContent();
-        }, time_MOVE);
 
-        setOtherIndex();
-        updateTxt();
-        setTxtCtAnimate();
-        $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
+        }, time_MOVE);
 
     };
 };
