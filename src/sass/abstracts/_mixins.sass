@@ -27,7 +27,7 @@
     @for $i from 1 through length($url)
         @if nth($url,$i) !=''
             @if str-slice(inspect(nth($url,$i)),1,1) == '#'
-                background-color: unquote(nth($url,$i))
+                // background-color: unquote(nth($url,$i))
             @else if inspect(nth($url,$i)) !=''
                 background-image: url(nth($url,$i))
     background: 

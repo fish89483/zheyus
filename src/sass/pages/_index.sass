@@ -3,11 +3,14 @@ body
     position: relative
     overflow: hidden
     cursor: none
+a
+    cursor: none
+
 .wrapper
     +size(100%)
     +noise
     
-    background: linear-gradient(to bottom, rgba(map-get($color, bg),1) 0%, rgba(map-get($color, bg),.6) 100%)
+    // background: linear-gradient(to bottom, rgba(map-get($color, bg),1) 0%, rgba(map-get($color, bg),.6) 100%)
     &::after
         content: ''
         +size(100%)
@@ -15,16 +18,20 @@ body
         background-image: url('#{map-deep-get($const, pattern, grid)}')
         z-index: -1
         pointer-events: none
+        opacity: .3
         // animation: test 40s infinite linear
     // &::before
     //     z-index: 0
     //     mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))
+
 .container
     width: 100%
-    max-width: 1400px
+    max-width: 1440px
     margin-right: auto
     margin-left: auto
     padding: 0 20px
+    +rwd(xl)
+        max-width: 1200px
 
 // toggle index & pages
 .wrapper.-pages-view
@@ -34,19 +41,32 @@ body
     .o-carousel
         opacity: 0
         pointer-events: none
-            
+
+
+
+.a-dust
+    +size(100%)
+    +position(absolute,0,0,0,0)
+    +bg(#{map-get($img, dust)},center,cover)
+    z-index: 1
+    pointer-events: none
+    mix-blend-mode: difference
 
 $cta-width: 120
+$cta-height: 40
 $cta-moving: 2
 .a-cta
     width: $cta-width + px
-    display: inline-block
+    height: $cta-height + px
+    display: inline-flex
+    justify-content: center
+    align-items: center
     position: relative
-    padding: 15px
+    // padding: 15px
     margin-top: 30px
     color: map-get($color, sec)
-    text-align: center
-    line-height: 1
+    & + &
+        margin-left: 20px
     &::before, &::after
         content: ''
         +size(100%)
@@ -61,3 +81,4 @@ $cta-moving: 2
         &::before, &::after
             transform: translate(0)
             +size(($cta-width + $cta-moving * 2) / $cta-width * 100%)
+

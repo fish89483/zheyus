@@ -1,9 +1,9 @@
 var itemList = [
     ['', '', ''],
-    ['盛事公主號', 't2.jpg'],
-    ['太陽公主號', 't3.jpg'],
-    ['傳奇號', 't4.jpg'],
-    ['傳奇號', 't4.jpg']
+    ['Cinema In Time', 'MoiveApp_thumb.jpg'],
+    ['大場感GYM', 'GymApp_thumb.jpg'],
+    ['Front - End', 'f2e_thumb.gif'],
+    ['Contact me', 't4.jpg']
 ];
 
 var $item = $('.o-carousel__item');
@@ -117,13 +117,17 @@ $(function () {
     updateTxt();
     updateContent();
     setKvActive();
+    setCountTxt();
 
     setTimeout(function () {
         $item.addClass('-animate');
     }, time_MOVE);
-
-    $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
+    
 });
+
+$(window).resize(function() {
+    setOffset();
+  });
 
 function dispatchIndex(num) {
     var dir = setIndex(num, true);
@@ -146,7 +150,7 @@ function moveItem(dir, isDispatch) {
         setOtherIndex();
         updateTxt();
         setTxtCtAnimate();
-        $itemCountTxt.html(currIndex + 1 + ' / ' + itemLen);
+        setCountTxt();
 
         setTimeout(function () {
             $item.removeClass('-start -' + dir);
@@ -201,6 +205,14 @@ function setOtherIndex() {
     if (hTopIndex < 0) hTopIndex = itemLen - 1;
     if (hBtmIndex >= itemLen) hBtmIndex = 0;
     // console.log(hTopIndex + '/' + prevIndex + '/' + currIndex + '/' + nextIndex + '/' + hBtmIndex);
+}
+
+function setCountTxt(){
+    if(currIndex != 0){
+        $itemCountTxt.html((currIndex + 1) - 1  + ' / ' + (itemLen - 1));
+    }else{
+        $itemCountTxt.html('')
+    }
 }
 
 function updateTxt() {

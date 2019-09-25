@@ -1,7 +1,8 @@
 // _typography
 @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css)
 body
-    font-family: 'Noto Sans TC', sans-serif
+    *
+        font-family: 'Noto Sans TC', sans-serif
 
 .t
     &-kv-title
@@ -10,17 +11,36 @@ body
         font-weight: 600
         text-align: left
         // letter-spacing: 15px
-        
-
-    &-title
-        font-size: 5em
-        font-weight: 600
-        letter-spacing: 15px
-        +rwd(l)
+        +rwd(m)
             font-size: 4em
         +rwd(s)
             font-size: 3em
-        
+    &-title
+        font-weight: 600
+        letter-spacing: 1px
+        h2
+            font-size: 4em
+            +rwd(l)
+                font-size: 4em
+            +rwd(s)
+                font-size: 3em
+        h3
+            font-size: 2.5em
+            +rwd(l)
+                font-size: 2.5em
+            +rwd(s)
+                font-size: 2.5em
+
+
+    
+
+    &-cta
+        font-size: 1em
+        font-weight: 600
+        line-height: 1
+        text-align: center
+        letter-spacing: 1px
+
     &-txt
         font-size: 1em
         line-height: 1.5

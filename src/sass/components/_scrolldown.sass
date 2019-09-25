@@ -1,9 +1,11 @@
  
 .a-scrolldown
     +size(map-get($scrolldown, size))
-    +position(absolute,'','',2%,calc(50% - #{map-get($scrolldown, size)}))
+    +position(absolute,'','',2%,calc(50% - #{map-get($scrolldown, size)/2}))
     z-index: 5
     transition: map-get($scrolldown, time)
+    +rwd(s)
+        display: none
     span
         +size(map-get($scrolldown, stroke),100%)
         +position(absolute,'','',map-get($scrolldown, stroke),50%)
@@ -29,7 +31,7 @@
             animation-play-state: paused
             &::before,&::after
                 animation-play-state: paused
-
+    
 
   
 

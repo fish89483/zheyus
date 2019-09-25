@@ -4,14 +4,17 @@ html(lang="zh-TW")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title Document
+        title ZheYu's Portfolio
 
         link(rel="stylesheet", href="css/main.css")
 
     body
         .a-cursor
             span
+        
+        .a-dust
         .wrapper
+            
             //- include header
             include include/header.pug
 
@@ -27,7 +30,7 @@ html(lang="zh-TW")
                                 .o-carousel__txt
                                     .m-carousel__txt-item
                                         //- title
-                                        .m-carousel__title.t-title
+                                        .m-carousel__title.a-split__title.t-title
                                             .a-split__line
                                                 h2
                                             .a-split__plane
@@ -48,7 +51,7 @@ html(lang="zh-TW")
                                 .o-carousel__txt
                                     .m-carousel__txt-item
                                         //- title
-                                        .m-carousel__title.t-title
+                                        .m-carousel__title.a-split__title.t-title
                                             .a-split__line
                                                 h2
                                             .a-split__plane
@@ -66,7 +69,6 @@ html(lang="zh-TW")
                 //- include pages
                 include include/pages.pug
                 
-
                 
             
     script(src="js/main.js")

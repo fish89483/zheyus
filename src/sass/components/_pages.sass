@@ -1,0 +1,86 @@
+// m-pages
+.m-pages
+    +size(100%)
+    +position(absolute,0)
+    opacity: 0
+    pointer-events: none
+    transition: map-get($time, transition)
+    &__item
+        +size(100%,100vh)
+        padding: 20px 0
+        display: none
+        &.-active
+            display: block
+            overflow: auto
+    &-item__title
+        color: map-deep-get($carousel, color, title)
+        padding: 20px 0
+
+.m-page-items
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+
+
+.m-pages__item#pages-4
+
+    .m-page-item
+        margin-bottom: 30px
+        flex: 0 0 calc(50% - #{map-get($gutter, xl)/2})
+        max-width: calc(50% - #{map-get($gutter, xl)/2})
+        margin-right: map-get($gutter, xl)
+        &:nth-child(2n) 
+            margin-right: 0
+        +rwd(l)
+            flex: 0 0 calc(50% - #{map-get($gutter, l) /2})
+            max-width: calc(50% - #{map-get($gutter, l) /2})
+            margin-right: map-get($gutter, l)
+            &:nth-child(2n) 
+                margin-right: 0
+        +rwd(s)
+            flex: 0 0 100%
+            max-width: 100%
+            margin-right: 0
+
+        &:hover
+            .m-page-item__pic
+                filter: saturate(1)
+        &__pic
+            width: 100%
+            +ratio(2,1)
+            +bg(#ddd,center,cover)
+            filter: saturate(0.5) brightness(.95)
+            transition: map-get($time, smooth)
+        &__txt
+            display: flex
+            flex-direction: column
+            .a-cta
+                margin-top: 10px
+                align-self: flex-end
+        
+        &__title
+            font-weight: 500
+            padding: 10px 0
+            font-size: 1.5em
+            color: map-get($color,sec)
+            +rwd(s)
+                font-size: 1em
+        &__describe
+            color: map-get($color, 6)
+            +rwd(s)
+                font-size: 0.5em
+        &.-cruise
+            [class*='pic']
+                background-image: url('../images/th-cruise.jpg')
+        &.-golf
+            [class*='pic']
+                background-image: url('../images/th-golf.jpg')
+        &.-codepen-pen
+            [class*='pic']
+                background-image: url('../images/th-pen.jpg')
+        &.-codepen-lego
+            [class*='pic']
+                background-image: url('../images/th-lego.jpg')
+        &.-codepen-scrollspy
+            [class*='pic']
+                background-image: url('../images/th-scrollspy.jpg')

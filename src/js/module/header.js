@@ -31,11 +31,12 @@ $('.o-header__menu-mask').on('click', function () {
 
 $('.a-cta').on('click', function () {
     var num = parseInt($(this).attr('id').split('-')[1]); // #cta-2
+    if(num == 4){
     $('#pages-' + num).addClass('-active'); // #pages-2
     $('.a-burger').addClass('-active');
     $('.wrapper').addClass('-pages-view');
     isPageview = true;
-
+    }
 });
 
 $('.o-header__menu li').on('click', function () {

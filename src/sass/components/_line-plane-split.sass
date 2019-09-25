@@ -1,22 +1,39 @@
 // line-plane-split
 
 .a-split
-    &__plane, &__line
-        position: absolute
+    // &__plane, &__line
+    //     position: absolute
     &__plane
         >*
             transform: translate(-2px,1px)
             transition: map-get($time, transition)
+            +rwd(s)
+                transform: translate(-1px,1px)
     &__line
+        position: absolute
         z-index: 2
         >*
             color: transparent
             -webkit-text-stroke-width: 1px
             transform: translate(2px,-1px)
             transition: map-get($time, transition)
+            +rwd(s)
+                transform: translate(1px,-1px)
         &:hover
             &, & ~.a-split__plane
                 >*
                     transform: translate(0)
-
         
+        
+
+    &__title
+        +size(100%,auto)
+        display: block
+        color: map-deep-get($carousel, color, title)
+        transition: map-deep-get($carousel, time, sec-move) transform ease
+        *
+            -webkit-text-stroke-color: map-deep-get($carousel, color, title-stroke)
+        // +rwd(l)
+        //     height: 70px
+        // +rwd(s)
+        //     height: 60px

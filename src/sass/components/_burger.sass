@@ -3,6 +3,8 @@
     +size(map-get($burger, size))
     +position(absolute,10px,10px)
     z-index: 15
+    +rwd(s)
+        +position('',4px,4px)
     span
         +size(map-get($burger, each-height)*1.5)
         +position(absolute,'','','',50%)

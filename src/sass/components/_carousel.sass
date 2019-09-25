@@ -124,7 +124,8 @@ $move-delta: 80%
             transform: translate(-40%,-50%) rotateX(80deg)
 
     &__count
-        +position(absolute,'',0,0)
+        +position(absolute,'',10px,10px)
+        color: map-get($color, title)
 
 .m-carousel
     &__txt-item
@@ -134,30 +135,24 @@ $move-delta: 80%
         +rwd(m)
             width: 100%
             transform: translateY(-50%)
+            // min-height: 300px
     &__txt-content
-        padding-top: 30px
+        padding-top: 15px
         opacity: 0
         // height: 0
         // overflow: hidden
         position: absolute
         transition: map-deep-get($carousel, time, sec-move) height ease
         pointer-events: none
-        +rwd(s)
-            padding-top: 15px
+        // +rwd(s)
+        //     padding-top: 15px
         &.-txt-content-2
+        p
+            color: map-get($color, 6)
         
     &__title
-        +size(100%,80px)
-        display: block
-        color: map-deep-get($carousel, color, title)
-        opacity: 0.2
-        transition: map-deep-get($carousel, time, sec-move) transform ease
-        *
-            -webkit-text-stroke-color: map-deep-get($carousel, color, title-stroke)
-        +rwd(l)
-            height: 70px
-        +rwd(s)
-            height: 60px
+       opacity: 0.2
+        
         
 
     // &__txt

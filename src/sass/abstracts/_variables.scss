@@ -7,17 +7,20 @@ $const: (
 
 $color: (
     // main: #11acf0,
+    6: #666666,
     test: red,
     9: #999999,
     main: #d34444,
     sec: #68684a,
     title: #a29578,
     // bg: #fffee8
-    bg: #fffff5,
+    // bg: #fffff5,
+    bg: #ffffff,
 );
 
 $img: (
-    noise: '../images/noise.gif',
+    noise: '../images/noise.png',
+    dust: '../images/dust.png',
 );
 
 $time: (
@@ -79,4 +82,9 @@ $burger: (
     distance: 20%,
     color: map-get($color, title),
     time: 400ms,
-)
+);
+
+$gutter: (
+    xl: 50px,
+    l: 20px
+);
