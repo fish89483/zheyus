@@ -76,7 +76,7 @@ gulp.task('styles', gulp.series('sass'));
 // js - concat & uglify
 gulp.task('js', function() {
     return gulp.src(path.concatJS)
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(concat('main.js'))
         // .pipe(hash()) // Add hashes to the files' names
         // .pipe(gulp.dest('dist/js')) // Write the renamed files

@@ -1,5 +1,7 @@
 var itemList = [
     ['', '', ''],
+    ['ELearning System','Elearning_thumb.png'],
+    ['智慧盤點系統','inventory_thumb.png'],
     ['Cinema In Time', 'MoiveApp_thumb.jpg'],
     ['大場感GYM', 'GymApp_thumb.jpg'],
     ['Front - End', 'f2e_thumb.gif'],
